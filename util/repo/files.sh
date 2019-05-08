@@ -1,1 +1,1 @@
-find . -type f |grep -v "./.ginit"
+find . -type f |grep -v "./.git"

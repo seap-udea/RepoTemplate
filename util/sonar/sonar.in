@@ -1,9 +1,10 @@
 cleansonar:
 	@echo "Cleaning sonar files..."
 	@-find . -name "*.bak" -delete
+	@-find . -name "*.log" -delete
 	@-find . -name "*.xml" -delete
 	@-find . -name ".coverage" -delete
-	@-find . -name "coverage_html" -type d | xargs rm -fr
+	@-find . -name "coverage-html" -type d | xargs rm -fr
 	@-find . -name ".scannerwork" -type d | xargs rm -fr
 	@-find $(UTIL)/sonar/build -type f -delete
 
