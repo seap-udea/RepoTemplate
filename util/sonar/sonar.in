@@ -1,0 +1,20 @@
+cleansonar:
+	@echo "Cleaning sonar files..."
+	@-find . -name "*.bak" -delete
+	@-find . -name "*.xml" -delete
+	@-find . -name ".coverage" -delete
+	@-find . -name "coverage_html" -type d | xargs rm -fr
+	@-find . -name ".scannerwork" -type d | xargs rm -fr
+	@-find $(UTIL)/sonar/build -type f -delete
+
+coverage:
+	@bash $(UTIL)/repo/deps.sh coverage
+	@bash $(UTIL)/sonar/coverage.sh
+
+sonar:build coverage
+	@bash $(UTIL)/repo/deps.sh sonar-scanner
+	@bash $(UTIL)/sonar/sonar.sh
+
+build:
+	@bash $(UTIL)/repo/deps.sh build-wrapper
+	@bash $(UTIL)/sonar/build.sh

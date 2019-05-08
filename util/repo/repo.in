@@ -1,0 +1,66 @@
+#####################################################################
+#VARIABLES
+#####################################################################
+REPO=$(shell basename $(PWD))
+REPODIR=$(UTIL)/repo/
+
+#####################################################################
+#GIT RULES
+#####################################################################
+commit:
+	@echo "Commiting..."
+	@-git commit -am "Commit"
+	@-git push origin master
+
+status:
+	@echo "Git Status..."
+	@-git status
+
+pull:
+	@echo "Pulling new files..."
+	@-git reset --hard HEAD
+	@-git pull
+
+#####################################################################
+#REPO RULES
+#####################################################################
+cleanrepo:
+	@echo "Cleaning repo files..."
+
+repo:
+	@echo "Creating a new repo..."	
+
+	@echo "Removing all git information..."
+	@rm -rf .git
+
+	@echo "Creating GitHub repository $(USER)/$(REPO) (if this is not the right user ctrl+c and run: USER=<user> make repo)"
+	@curl -o /dev/null -s -u '$(USER)' https://api.github.com/user/repos -d '{"name":"$(REPO)"}'
+
+	@echo "Initializing repo..."
+	@git init
+	@git add -A
+	@git remote add origin git@github.com-$(USER):$(USER)/$(REPO).git
+	@git commit -am "New Repo"
+	@echo "Pushing files..."
+	@git push origin master
+
+	@echo "#Automatically generate by make repo:" >> .reporc
+	@echo "REPO=$(REPO)" >> .reporc
+	@echo "USER=$(USER)" >> .reporc
+
+	@chmod +x $(UTIL)/sonar/tools/*
+
+	@make unpack
+	@make deps
+
+deps:
+	@echo "Checking for dependencies..."
+	@bash $(REPODIR)/deps.sh
+
+pack:
+	@echo "Packing data..."
+	@bash $(REPODIR)/pack.sh
+
+unpack:
+	@echo "Unpacking data..."
+	@bash $(REPODIR)/pack.sh unpack
