@@ -25,6 +25,8 @@ Make sure that you have configured (installed) your GitHub credentials and have 
 
 > **NOTE**: Hereafter we will assume that your GitHUb account name is **`iHacker`**.
 
+If you have any problem preparing or configuring the repo see the [Sonar troubleshooting](util/sonar/docs/troubleshooting.md) or the [Repository troubleshooting](util/repo/docs/troubleshooting.md).
+
 <a name="starting"></a>
 ## Getting started
 
