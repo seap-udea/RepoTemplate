@@ -1,3 +1,3 @@
-sonar.projectKey=<<ProjectKey, eg. TestRepo>>
-sonar.organization=<<Organization, eg. seap-udea-github>>
-sonar.login=<<token, eg. c0435c87ad97ae9e46067ed809358e961ef****>>
+sonar.projectKey=seap-udea_RepoTemplate
+sonar.organization=seap-udea-github
+sonar.login=2084a54ce06b4d193900141cf67a163681f746d171755174
