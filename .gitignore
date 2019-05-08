@@ -158,6 +158,7 @@ venv.bak/
 
 #RepoTemplate specifics
 .reporc
+.sonarc
 .#*
 \#*\#
 *~
