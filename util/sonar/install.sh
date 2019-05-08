@@ -17,7 +17,7 @@ else
     #Install it
     mkdir -p $HOME/src/
     unzip -d $HOME/src/ /tmp/sonar-scanner-linux.zip
-    mv $HOME/src/sonar-scaner-* $HOME/src/sonnar-scaner/
+    mv $HOME/src/sonar-scanner-* $HOME/src/sonar-scanner/
 fi
 
 #Install build-wrapper
