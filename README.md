@@ -37,6 +37,10 @@ Creating a new repository from **RepoTemplate**, is very easy:
 		mkdir -p NewRepo
 		cd NewRepo
 
+2. Configure your github credentials (see [GitHub configurationn](#gitconfig)):
+	
+		git config --global --edit
+
 2. Clone the repo template in the new directory (attention to the final `.`; it is mandatory):
 
 		git clone https://github.com/seap-udea/RepoTemplate.git .
@@ -50,6 +54,10 @@ Creating a new repository from **RepoTemplate**, is very easy:
 4. Test your repo:
 	
 		make
+
+5. Commit your repo changes:
+	
+		make commit
 
 Voila! you have your new repository.
 
