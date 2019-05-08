@@ -25,7 +25,7 @@ show you a recommendation to solve them.
 		sonar.organization=iHacker-github
 		sonar.login=2084a54ce06b4d193900141cf67a163681f746d1
 
-- **Other instructions**: See [Repository Personalization](README.md#) in the README.
+- **Other instructions**: See [Repository Personalization](../../README.md#personalization) in the README.
 
 <!--
 # -Dsonar.cfamily.gcov.reportsPath=tests/
