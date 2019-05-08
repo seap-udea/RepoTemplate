@@ -21,7 +21,7 @@ do
 	    continue
 	fi
     fi
-    echo "Downloading $file"
-    echo wget -O $file $rawuri/$file
+    echo -n "Downloading $file: "
+    curl -s -o $file $rawuri/$file
+    echo "done."
 done
-

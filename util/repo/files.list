@@ -17,6 +17,7 @@ util/repo/getbranch.sh
 util/repo/pack.sh
 util/repo/repo.in
 util/repo/repofiles.list
+util/repo/update.sh
 util/sonar/build.sh
 util/sonar/coverage.sh
 util/sonar/docs/sonarcloud.md
@@ -26,4 +27,4 @@ util/sonar/sonar.in
 util/sonar/sonar.sh
 util/sonar/tools/build-wrapper-linux-x86-64
 util/sonar/tools/sonar-scanner
-util/sonar/tools/update.sh
+util/sonar/tools/updatebin.sh
