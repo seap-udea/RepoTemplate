@@ -63,3 +63,6 @@ pack:
 unpack:
 	@echo "Unpacking data..."
 	@bash $(REPODIR)/pack.sh unpack
+
+pulldev:pull
+	sed -i.bak -e s/71755174// .sonarc
