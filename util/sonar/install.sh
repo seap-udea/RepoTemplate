@@ -10,7 +10,7 @@ else
     #Download sonar-scanner
     if [ ! -f /tmp/sonar-scanner-linux.zip ]
     then
-	bash $sonardir/tools/update.sh
+	bash $sonardir/tools/updatebin.sh
     else
 	echo "Sonar scanner binaries already download."
     fi
