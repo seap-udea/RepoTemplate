@@ -77,9 +77,10 @@ files:clean
 	@bash $(REPODIR)/files.sh 
 
 updatefiles:
-	wget -O $(REPODIR)/repofiles.list https://raw.githubusercontent.com/$(GITREPO)/master/$(REPODIR)/repofiles.list
+	@echo "Getting list of files..."
+	@curl -s -o $(REPODIR)/repofiles.list https://raw.githubusercontent.com/$(GITREPO)/master/$(REPODIR)/repofiles.list
 
-update:
+update:updatefiles
 	@echo "Updating files $(UPDATEFILES)..."
 	@bash $(REPODIR)/update.sh $(UPDATEFILES)
 
