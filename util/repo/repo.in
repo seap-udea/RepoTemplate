@@ -44,11 +44,9 @@ repo:
 	@echo "Pushing files..."
 	@git push origin master
 
-	@mv .reporc.temp .reporc
 	@echo "#Automatically generate by make repo:" >> .reporc
 	@echo "REPO=$(REPO)" >> .reporc
 	@echo "USER=$(USER)" >> .reporc
-	@mv .sonarc.temp .reporc
 
 	@chmod +x $(UTIL)/sonar/tools/*
 
