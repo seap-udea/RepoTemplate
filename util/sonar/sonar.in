@@ -6,8 +6,8 @@ cleansonar:
 	@-find . -name ".coverage" -delete
 	@-find . -name "coverage-html" -type d | xargs rm -fr
 	@-find . -name ".scannerwork" -type d | xargs rm -fr
-	@-find $(UTIL)/sonar/build/* -name "*.json" -delete
-	@-find $(UTIL)/sonar/build/* -name "*.log" -delete
+	@-find $(UTIL)/sonar/build/ -name "*.json" -delete
+	@-find $(UTIL)/sonar/build/ -name "*.log" -delete
 
 coverage:
 	@echo "Executing coverage..."
