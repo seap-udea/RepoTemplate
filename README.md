@@ -1,13 +1,15 @@
 # RepoTemplate
-> Template files for a (i)python, C and C++ repositories integrated to SonarQube
+> Template files for a (i)Python, C and C++ repositories integrated with SonarQube
 
-For those who program oftenly in `C`, `C++` and `Python` it is common that when creating a new project, many files from other projects and repositories must be copied in new repositories.  Makefiles, installation scripts, sample test code, etc.  **RepoTemplate** offer in a single *package* the basic functionality of a basic repository (project) including:
+For those who program oftenly in `C`, `C++` and `Python`, it is common that when creating a new project, many files from other projects and repositories must be copied in a new repositorie.  Makefiles, installation scripts, sample test code, etc are normally the same for a new repo. 
+
+**RepoTemplate** offers in a single *package* the basic functionality of a basic repository (project) including:
 
 - A generic makefile.
 
-- Example testing code.
+- Example testing code (`unittest` for Python and `cppunit` C++).
 
-- Installations scripts.
+- Installations and configuration scripts.
 
 - [SonarQube](https://sonarcloud.io/) integration.
 
@@ -19,7 +21,31 @@ To use **RepoTemplate** you will need (*non-functional* requisites):
 
 3. An Ubuntu Linux machine (we assume it has a x86-64 architecture). 
 
-Make sure that you have configured (installed) your GitHub credentials and have configured your account to make some git:
+Make sure that you have configured (installed) your GitHub credentials and have configured your account to make some git (see [appendixes](#gitconfig))
+
+## Getting started
+
+Using **RepoTemplate** is very easy:
+
+1. Create locally a directory for the new Repo, eg. `NewRepo`:
+
+		mkdir -p NewRepo
+		cd NewRepo
+
+2. Clone the repo template:
+
+		git clone https://github.com/seap-udea/RepoTemplate.git .
+
+3. Run the *make rule* `repo`:
+
+		USER=ihacker make repo
+
+4. Voila!
+
+## Appendixes
+
+<a name="gitconfig"></a>
+### Git configuration
 
 - Configure:
 	
@@ -40,21 +66,3 @@ Make sure that you have configured (installed) your GitHub credentials and have 
 		        User git
 		        IdentityFile ~/.ssh/id_rsa_ihacker
 
-## Getting started
-
-Using **RepoTemplate** is very easy:
-
-1. Create locally a directory for the new Repo, eg. `NewRepo`:
-
-		mkdir -p NewRepo
-		cd NewRepo
-
-2. Clone the repo template:
-
-		git clone https://github.com/seap-udea/RepoTemplate.git .
-
-3. Run the *make rule* `repo`:
-
-		USER=ihacker make repo
-
-4. Voila!
