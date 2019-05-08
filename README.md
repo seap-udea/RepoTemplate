@@ -15,7 +15,7 @@ For those who program oftenly in `C`, `C++` and `Python`, it is common that when
 
 To use **RepoTemplate** you will need (*non-functional* requisites):
 
-1. A [GitHub](https://github.com/join?source=header-home) account (we will assume *iHacker*).
+1. A [GitHub](https://github.com/join?source=header-home) account.
 
 2. A [SonarQube](https://sonarcloud.io/) account.
 
@@ -23,16 +23,18 @@ To use **RepoTemplate** you will need (*non-functional* requisites):
 
 Make sure that you have configured (installed) your GitHub credentials and have configured your account to make some git (see [appendixes](#gitconfig))
 
+> **NOTE**: Hereafter we will assume that your GitHUb account name is **`iHacker`**.
+
 ## Getting started
 
-Using **RepoTemplate** is very easy:
+Creating a new repository from **RepoTemplate**, is very easy:
 
 1. Create locally a directory for the new Repo, eg. `NewRepo`:
 
 		mkdir -p NewRepo
 		cd NewRepo
 
-2. Clone the repo template:
+2. Clone the repo template in the new directory (attention to the final `.`; it is mandatory):
 
 		git clone https://github.com/seap-udea/RepoTemplate.git .
 
@@ -40,7 +42,15 @@ Using **RepoTemplate** is very easy:
 
 		USER=ihacker make repo
 
-4. Voila!
+	You need to be sure that `NewRepo` does not exist in the `iHacker` GitHub account.
+
+Voila! you have your new repository.
+
+Before using the repository, however, you need to personalize it.
+
+## Repository Personalization
+
+
 
 ## Appendixes
 
