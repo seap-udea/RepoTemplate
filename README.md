@@ -70,7 +70,7 @@ In order to use some of the best functionalities of **RepoTemplate**, it is need
 		Checking for clang:not installed.
 		Checking for cppunit:not installed.
 		----copy this----
-		sudo apt-get install -y libcppunit-dev libcppunit-doc;sudo apt-get install -y clang;sudo apt-get install -y python3-nose;sudo apt-get install -y python3-coverage;echo Download sonar-scanner binaries;echo Download build-wrapper binaries;
+		sudo apt-get install -y libcppunit-dev libcppunit-doc;sudo apt-get install -y clang;sudo apt-get install -y python3-nose;sudo apt-get install -y python3-coverage;make sonarinstall;
 		----end copy----
 
 	You must copy the commands betwee `----copy this---` and `----end copy----`.	For the installation of the `sonar-scanner` and `build-wrapper` dependencies see 2.  Once installed the dependencies run again:
