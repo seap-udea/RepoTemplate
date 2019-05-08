@@ -13,6 +13,3 @@ BUILDWRAPPER=util/sonar/tools/build-wrapper-linux-x86-64
 PYTHON=python3
 NOSETESTS=nosetests3
 
-#Automatically generate by make repo:
-REPO=RepoTemplate
-USER=seap-udea
