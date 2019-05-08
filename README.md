@@ -25,6 +25,7 @@ Make sure that you have configured (installed) your GitHub credentials and have 
 
 > **NOTE**: Hereafter we will assume that your GitHUb account name is **`iHacker`**.
 
+<a name="starting"></a>
 ## Getting started
 
 Creating a new repository from **RepoTemplate**, is very easy:
@@ -52,6 +53,7 @@ Voila! you have your new repository.
 
 Before using the repository, however, you need to personalize it.
 
+<a name="personalization"></a>
 ## Repository Personalization
 
 In order to use some of the best functionalities of **RepoTemplate**, it is needed to execute some additional commands.  
@@ -104,9 +106,9 @@ In order to use some of the best functionalities of **RepoTemplate**, it is need
 
 	> **About sonar binaries**: Sonar require two set of binaries: 	build-wrapper and sonar-scanner (for detailed explanations of this files see 	[Sonar Functionality](util/sonar/docs/sonarcloud.md)).  Although they 	should be normally downloaded fron SonarQube website, for the sake of 	simplicity, we provide along this package a script for getting and placing 	it in the right place: `make sonarinstall`.
 
-2. Create new project in [Sonarcloud.io](http://sonarcloud.io) and get the `Project Key`, `Organization Key` and `token` (for detailed instructions see [Sonar Cloud configuration](util/sonar/docs/sonarcloud.md))
+3. Create new project in [Sonarcloud.io](http://sonarcloud.io) and get the `Project Key`, `Organization Key` and `token` (for detailed instructions see [Sonar Cloud configuration](util/sonar/docs/sonarcloud.md))
 
-3. Edit `.sonarc` using the 
+4. Edit `.sonarc` using the 
 
 		sonar.projectKey=iHacker_NewRepo
 		sonar.organization=iHacker-github
