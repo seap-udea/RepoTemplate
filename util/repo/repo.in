@@ -35,7 +35,7 @@ pullall:
 #####################################################################
 cleanrepo:
 	@echo "Cleaning repo files..."
-	@-find . -name "*.zip" -delete
+	@-find . -name "*.zip" -type f -delete
 
 repo:
 	@echo "Creating a new repo..."	
