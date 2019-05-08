@@ -50,7 +50,9 @@ Before using the repository, however, you need to personalize it.
 
 ## Repository Personalization
 
+In order to use some of the best functionalities of **RepoTemplate** it is needed to personlize a couple of files
 
+### 
 
 ## Appendixes
 

@@ -10,7 +10,8 @@ LFLAGS=-lm
 #####################################################################
 #COMMON RULES
 #####################################################################
-all:program.out
+all:
+	bash compile.sh
 
 clean:cleancrap cleanrepo cleansonar cleanout
 
