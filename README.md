@@ -121,7 +121,7 @@ In order to use some of the best functionalities of **RepoTemplate**, it is need
 
 ***
 
-## Complicated stuff
+## Some complicated stuff
 
 This is some (optional) complicated stuff.  You probably know it, so we decided to put it at the end of this file to not bother you.  If you are kind of newbie we did not want to scare you with fancy commands.  Still if you have some time, please read.
 
