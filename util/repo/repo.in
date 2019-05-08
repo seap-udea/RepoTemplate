@@ -3,14 +3,18 @@
 #####################################################################
 REPO=$(shell basename $(PWD))
 REPODIR=$(UTIL)/repo/
+BRANCH=$(shell bash $(UTIL)/repo/getbranch.sh)
 
 #####################################################################
 #GIT RULES
 #####################################################################
+branch:
+	@echo "We are in branch '$(BRANCH)'"
+
 commit:
 	@echo "Commiting..."
 	@-git commit -am "Commit"
-	@-git push origin master
+	@-git push origin $(BRANCH)
 
 status:
 	@echo "Git Status..."
@@ -19,7 +23,12 @@ status:
 pull:
 	@echo "Pulling new files..."
 	@-git reset --hard HEAD
-	@-git pull
+	@-git pull origin $(BRANCH)
+
+pullall:
+	@echo "Pulling new files..."
+	@-git reset --hard HEAD
+	@-git pull --all
 
 #####################################################################
 #REPO RULES

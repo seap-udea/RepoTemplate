@@ -28,7 +28,7 @@ else
     #Download sonar-scanner
     if [ ! -f $sonardir/tools/build-wrapper.zip ]
     then
-	bash $sonardir/tools/update.sh
+	make unpack
     else
 	echo "Build-wrapper binaries already unpacked."
     fi

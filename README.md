@@ -60,19 +60,18 @@ Before using the repository, however, you need to personalize it.
 
 In order to use some of the best functionalities of **RepoTemplate**, it is needed to execute some additional commands.  
 
-1. Edit `.reporc`
-	
+1. Edit `.reporc` and choose, among other options, the version of `python` and `nosetests` you want to use.
+
 		#Directories
 		STOREDIR=.store
 		UTIL=util
 		#Sonar binary directories
-		SONARSCANNER=${HOME}/src/sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner
-		BUILDWRAPPER=${HOME}/src/build-wrapper-linux-x86/build-wrapper-linux-x86-64
+		SONARSCANNER=${HOME}/src/sonar-scanner/bin/sonar-scanner
+		BUILDWRAPPER=${HOME}/src/build-wrapper/build-wrapper-linux-x86-64
 		#Pthon
 		PYTHON=python3
 		NOSETESTS=nosetests3
 
-	Choose the version of python and nosetests you want to use.
 
 2. Install dependencies.
 
