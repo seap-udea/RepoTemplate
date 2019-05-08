@@ -6,4 +6,4 @@ find . -type f \
     |grep -v ".sonarc$" \
     |grep -v ".reporc$" \
     |grep -v "\-\-" \
-    |tee $UTIL/repo/files.list 
+    |tee $UTIL/repo/files.list |tee $UTIL/repo/repofiles.list
