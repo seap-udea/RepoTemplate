@@ -56,7 +56,21 @@ Before using the repository, however, you need to personalize it.
 
 In order to use some of the best functionalities of **RepoTemplate**, it is needed to execute some additional commands.  
 
-1. Install dependencies.
+1. Edit `.reporc`
+	
+		#Directories
+		STOREDIR=.store
+		UTIL=util
+		#Sonar binary directories
+		SONARSCANNER=${HOME}/src/sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner
+		BUILDWRAPPER=${HOME}/src/build-wrapper-linux-x86/build-wrapper-linux-x86-64
+		#Pthon
+		PYTHON=python3
+		NOSETESTS=nosetests3
+
+	Choose the version of python and nosetests you want to use.
+
+2. Install dependencies.
 
 		make deps
 
@@ -88,7 +102,7 @@ In order to use some of the best functionalities of **RepoTemplate**, it is need
 		Checking for cppunit:done.
 		All done.
 
-4. Download and install sonar-cube binaries.  Sonar require two set of binaries: build-wrapper and sonar-scanner (for detailed explanations of this files see [Sonar Functionality](util/sonar/docs/sonarcloud.md)).  Although they should be normally downloaded fron SonarQube sites, for the sake of simplicity we provide along this package a script for getting and placing it in the right place:
+3. Download and install sonar-cube binaries.  Sonar require two set of binaries: build-wrapper and sonar-scanner (for detailed explanations of this files see [Sonar Functionality](util/sonar/docs/sonarcloud.md)).  Although they should be normally downloaded fron SonarQube website, for the sake of simplicity, we provide along this package a script for getting and placing it in the right place:
 
 		make sonarinstall
 
@@ -100,17 +114,6 @@ In order to use some of the best functionalities of **RepoTemplate**, it is need
 		sonar.organization=iHacker-github
 		sonar.login=2084a54ce06b4d193900141cf67a163681f746d1
 
-5. Edit `.reporc`
-	
-		#Directories
-		STOREDIR=.store
-		UTIL=util
-		#Sonar binary directories
-		SONARSCANNER=${HOME}/src/sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner
-		BUILDWRAPPER=${HOME}/src/build-wrapper-linux-x86/build-wrapper-linux-x86-64
-		#Pthon
-		PYTHON=python3
-		NOSETESTS=nosetests3
 
 ***
 
