@@ -25,7 +25,7 @@ Make sure that you have configured (installed) your GitHub credentials and have 
 
 > **NOTE**: Hereafter we will assume that your GitHUb account name is **`iHacker`**.
 
-If you have any problem preparing or configuring the repo see the [Sonar troubleshooting](util/sonar/docs/troubleshooting.md) or the [Repository troubleshooting](util/repo/docs/troubleshooting.md).
+If you have any problem preparing or configuring the repo see the [Repository troubleshooting](util/repo/docs/troubleshooting.md) or the [Sonar troubleshooting](util/sonar/docs/troubleshooting.md).
 
 <a name="starting"></a>
 ## Getting started
@@ -131,7 +131,7 @@ This is some (optional) complicated stuff.  You probably know it, so we decided 
 		git config --global user.email "your.email@server.org"
 		git config --global user.name "Your Name"
 
-  or equivalently:
+	or equivalently:
 
 		git config --global --edit
 
