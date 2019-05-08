@@ -22,6 +22,8 @@ cleancrap:
 	@-find . -name "#*" -delete
 	@-find . -name ".#*" -delete
 	@-find . -name ".#*#" -delete
+	@-find . -name ".DS_Store" -delete
+	@-find . -name ".Icon*" -delete
 
 cleanout:
 	@echo "Cleaning all compiled objects..."

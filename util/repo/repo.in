@@ -35,6 +35,7 @@ pullall:
 #####################################################################
 cleanrepo:
 	@echo "Cleaning repo files..."
+	@-find . -name "*.zip" -delete
 
 repo:
 	@echo "Creating a new repo..."	
@@ -71,5 +72,13 @@ unpack:
 	@echo "Unpacking data..."
 	@bash $(REPODIR)/pack.sh unpack
 
+files:clean
+	@echo "Generating list of files..."
+	@bash $(REPODIR)/files.sh 
+
+updatefiles:
+	wget -O $(REPODIR)/repofiles.list https://raw.githubusercontent.com/seap-udea/RepoTemplate/$(BRANCH)/util/repo/files.list
+
 pulldev:pull
 	sed -i.bak -e s/71755174// .sonarc
+

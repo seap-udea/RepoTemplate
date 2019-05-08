@@ -1,2 +1,3 @@
 #!/bin/bash
-git branch | grep "*" | cut -f 2 -d '*'
+branch=$(git branch | grep "*" | cut -f 2 -d '*')
+echo "${branch//[[:space:]]/}"
