@@ -26,6 +26,11 @@ Make sure that you have configured (installed) your GitHub credentials and have 
 		git config --global user.email "your.email@server.org"
 		git config --global user.name "Your Name"
 
+  or equivalently:
+
+		git config --global --edit
+		git commit --amend --reset-author
+
 - Create a ssh-key, upload it to GitHub and configure ssh in your machine:
 
 		ssh-keygen -t rsa -N"" -f $HOME/.ssh/id_rsa_ihacker
