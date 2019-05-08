@@ -4,8 +4,8 @@ UTIL=util
 
 #Sonar binary directories
 #If properly installed
-SONARSCANNER=sonar-scanner
-BUILDWRAPPER=build-wrapper-linux-x86-64
+SONARSCANNER=${HOME}/src/sonar-scanner/bin/sonar-scanner
+BUILDWRAPPER=${HOME}/src/build-wrapper/build-wrapper-linux-x86-64
 
 #Pthon
 PYTHON=python3
