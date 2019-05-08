@@ -19,6 +19,8 @@ cleancrap:
 	@-find . -name "*~" -delete
 	@-find . -name "#*#" -delete
 	@-find . -name "#*" -delete
+	@-find . -name ".#*" -delete
+	@-find . -name ".#*#" -delete
 
 cleanout:
 	@echo "Cleaning all compiled objects..."

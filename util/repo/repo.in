@@ -45,7 +45,7 @@ repo:
 	@git push origin master
 
 	@echo "#Automatically generate by make repo:" >> .reporc
-	@cat .reporc.temp > .reporc
+	@mv .reporc.temp .reporc
 	@echo "REPO=$(REPO)" >> .reporc
 	@echo "USER=$(USER)" >> .reporc
 
