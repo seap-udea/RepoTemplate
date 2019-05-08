@@ -44,17 +44,79 @@ Creating a new repository from **RepoTemplate**, is very easy:
 
 	You need to be sure that `NewRepo` does not exist in the `iHacker` GitHub account.
 
+4. Test your repo:
+	
+		make
+
 Voila! you have your new repository.
 
 Before using the repository, however, you need to personalize it.
 
 ## Repository Personalization
 
-In order to use some of the best functionalities of **RepoTemplate** it is needed to personlize a couple of files
+In order to use some of the best functionalities of **RepoTemplate**, it is needed to execute some additional commands.  
 
-### 
+1. Install dependencies.
 
-## Appendixes
+		make deps
+
+	This is a typical output of this command:
+	
+		Checking for dependencies...
+		Checking for sonar-scanner:not installed.
+		Checking for build-wrapper:not installed.
+		Checking for coverage:not installed.
+		Checking for nosetests:not installed.
+		Checking for clang:not installed.
+		Checking for cppunit:not installed.
+		----copy this----
+		sudo apt-get install -y libcppunit-dev libcppunit-doc;sudo apt-get install -y clang;sudo apt-get install -y python3-nose;sudo apt-get install -y python3-coverage;echo Download sonar-scanner binaries;echo Download build-wrapper binaries;
+		----end copy----
+
+	You must copy the commands betwee `----copy this---` and `----end copy----`.	For the installation of the `sonar-scanner` and `build-wrapper` dependencies see 2.  Once installed the dependencies run again:
+
+		make deps
+
+	When all the dependencies are met, the output of `make deps` should be:
+	
+		Checking for dependencies...
+		Checking for sonar-scanner:done.
+		Checking for build-wrapper:done.
+		Checking for coverage:done.
+		Checking for nosetests:done.
+		Checking for clang:done.
+		Checking for cppunit:done.
+		All done.
+
+4. Download and install sonar-cube binaries.  Sonar require two set of binaries: build-wrapper and sonar-scanner (for detailed explanations of this files see [Sonar Functionality](util/sonar/docs/sonarcloud.md)).  Although they should be normally downloaded fron SonarQube sites, for the sake of simplicity we provide along this package a script for getting and placing it in the right place:
+
+		make sonarinstall
+
+2. Create new project in [Sonarcloud.io](http://sonarcloud.io) and get the `Project Key`, `Organization Key` and `token` (for detailed instructions see [Sonar Cloud configuration](util/sonar/docs/sonarcloud.md))
+
+3. Edit `.sonarc` using the 
+
+		sonar.projectKey=iHacker_NewRepo
+		sonar.organization=iHacker-github
+		sonar.login=2084a54ce06b4d193900141cf67a163681f746d1
+
+5. Edit `.reporc`
+	
+		#Directories
+		STOREDIR=.store
+		UTIL=util
+		#Sonar binary directories
+		SONARSCANNER=${HOME}/src/sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner
+		BUILDWRAPPER=${HOME}/src/build-wrapper-linux-x86/build-wrapper-linux-x86-64
+		#Pthon
+		PYTHON=python3
+		NOSETESTS=nosetests3
+
+***
+
+## Complicated stuff
+
+This is some (optional) complicated stuff.  You probably know it, so we decided to put it at the end of this file to not bother you.  If you are kind of newbie we did not want to scare you with fancy commands.  Still if you have some time, please read.
 
 <a name="gitconfig"></a>
 ### Git configuration

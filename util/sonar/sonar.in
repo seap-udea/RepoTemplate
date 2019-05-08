@@ -9,13 +9,21 @@ cleansonar:
 	@-find $(UTIL)/sonar/build -type f -delete
 
 coverage:
+	@echo "Executing coverage..."
 	@bash $(UTIL)/repo/deps.sh coverage
 	@bash $(UTIL)/sonar/coverage.sh
 
 sonar:build coverage
+	@echo "Executing sonar-scanner..."
 	@bash $(UTIL)/repo/deps.sh sonar-scanner
 	@bash $(UTIL)/sonar/sonar.sh
 
 build:
+	@echo "Executing build-wrapper..."
 	@bash $(UTIL)/repo/deps.sh build-wrapper
 	@bash $(UTIL)/sonar/build.sh
+
+sonarinstall:
+	@echo "Installing sonar binaries..."
+	@bash $(UTIL)/repo/deps.sh unzip
+	@bash $(UTIL)/sonar/install.sh

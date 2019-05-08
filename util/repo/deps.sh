@@ -43,7 +43,7 @@ done
 
 if [ "x$recom" != "x" ]
 then
-    echo -e "Run these commands:\n$recom"
+    echo -e "Run these commands:\n----copy this----\n$recom\n----end copy----"
     exit 1
 else
     echo "All done."

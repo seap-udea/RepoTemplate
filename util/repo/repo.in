@@ -52,9 +52,6 @@ repo:
 
 	@chmod +x $(UTIL)/sonar/tools/*
 
-	@make unpack
-	@make deps
-
 deps:
 	@echo "Checking for dependencies..."
 	@bash $(REPODIR)/deps.sh
