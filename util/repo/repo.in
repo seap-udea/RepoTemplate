@@ -84,6 +84,6 @@ update:updatefiles
 	@echo "Updating files $(UPDATEFILES)..."
 	@bash $(REPODIR)/update.sh $(UPDATEFILES)
 
-pulldev:pull
-	sed -i.bak -e s/71755174// .sonarc
+edit:
+	emacs -nw $(shell cat $(REPODIR)/files.list)
 
