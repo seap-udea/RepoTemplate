@@ -16,7 +16,7 @@ else
     fi
     #Install it
     mkdir -p $HOME/src/
-    unzip -qd $HOME/src/ /tmp/sonar-scanner-linux.zip
+    unzip -q -d $HOME/src/ /tmp/sonar-scanner-linux.zip
     mv $HOME/src/sonar-scanner-* $HOME/src/sonar-scanner/
 fi
 
@@ -33,7 +33,7 @@ else
 	echo "Build-wrapper binaries already unpacked."
     fi
     mkdir -p $HOME/src/
-    unzip -qd $HOME/src/ $sonardir/tools/build-wrapper.zip
+    unzip -q -d $HOME/src/ $sonardir/tools/build-wrapper.zip
     mv $HOME/src/build-wrapper-* $HOME/src/build-wrapper/
 fi
 
