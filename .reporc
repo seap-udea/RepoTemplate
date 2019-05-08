@@ -1,0 +1,13 @@
+#Directories
+STOREDIR=.store
+UTIL=util
+
+#Sonar binary directories
+#If properly installed
+SONARSCANNER=sonar-scanner
+BUILDWRAPPER=build-wrapper-linux-x86-64
+
+#Pthon
+PYTHON=python3
+NOSETESTS=nosetests3
+

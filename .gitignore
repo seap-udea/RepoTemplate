@@ -157,7 +157,6 @@ venv.bak/
 .mypy_cache/
 
 #RepoTemplate specifics
-.reporc
 .sonarc
 .#*
 \#*\#

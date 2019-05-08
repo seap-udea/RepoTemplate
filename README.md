@@ -102,9 +102,7 @@ In order to use some of the best functionalities of **RepoTemplate**, it is need
 		Checking for cppunit:done.
 		All done.
 
-3. Download and install sonar-cube binaries.  Sonar require two set of binaries: build-wrapper and sonar-scanner (for detailed explanations of this files see [Sonar Functionality](util/sonar/docs/sonarcloud.md)).  Although they should be normally downloaded fron SonarQube website, for the sake of simplicity, we provide along this package a script for getting and placing it in the right place:
-
-		make sonarinstall
+	> **About sonar binaries**: Sonar require two set of binaries: 	build-wrapper and sonar-scanner (for detailed explanations of this files see 	[Sonar Functionality](util/sonar/docs/sonarcloud.md)).  Although they 	should be normally downloaded fron SonarQube website, for the sake of 	simplicity, we provide along this package a script for getting and placing 	it in the right place: `make sonarinstall`.
 
 2. Create new project in [Sonarcloud.io](http://sonarcloud.io) and get the `Project Key`, `Organization Key` and `token` (for detailed instructions see [Sonar Cloud configuration](util/sonar/docs/sonarcloud.md))
 
@@ -132,7 +130,6 @@ This is some (optional) complicated stuff.  You probably know it, so we decided 
   or equivalently:
 
 		git config --global --edit
-		git commit --amend --reset-author
 
 - Create a ssh-key, upload it to GitHub and configure ssh in your machine:
 
