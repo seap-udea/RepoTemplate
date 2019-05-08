@@ -1,3 +1,6 @@
+#Original repo
+GITREPO=seap-udea/RepoTemplate
+
 #Directories
 STOREDIR=.store
 UTIL=util

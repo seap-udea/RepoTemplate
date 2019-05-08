@@ -77,7 +77,7 @@ files:clean
 	@bash $(REPODIR)/files.sh 
 
 updatefiles:
-	wget -O $(REPODIR)/repofiles.list https://raw.githubusercontent.com/seap-udea/RepoTemplate/$(BRANCH)/util/repo/repofiles.list
+	wget -O $(REPODIR)/repofiles.list https://raw.githubusercontent.com/$(GITREPO)/$(BRANCH)/$(REPODIR)/repofiles.list
 
 pulldev:pull
 	sed -i.bak -e s/71755174// .sonarc

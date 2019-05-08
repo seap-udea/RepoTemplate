@@ -60,7 +60,7 @@ Before using the repository, however, you need to personalize it.
 
 In order to use some of the best functionalities of **RepoTemplate**, it is needed to execute some additional commands.  
 
-1. Edit `.reporc` and choose, among other options, the version of `python` and `nosetests` you want to use.
+1. Edit `.reporc` and choose, among other options, the version of `python` and `nosetests` you want to use. 
 
 		#Directories
 		STOREDIR=.store
@@ -72,6 +72,7 @@ In order to use some of the best functionalities of **RepoTemplate**, it is need
 		PYTHON=python3
 		NOSETESTS=nosetests3
 
+	> **NOTE**: It is important to notice that configuration files may change 	significantly, therefore this is an example.
 
 2. Install dependencies.
 
@@ -115,6 +116,8 @@ In order to use some of the best functionalities of **RepoTemplate**, it is need
 		sonar.organization=iHacker-github
 		sonar.login=2084a54ce06b4d193900141cf67a163681f746d1
 
+
+	> **NOTE**: It is important to notice that configuration files may change 	significantly, therefore this is an example.
 
 ***
 
