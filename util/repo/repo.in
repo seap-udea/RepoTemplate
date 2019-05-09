@@ -13,8 +13,8 @@ branch:
 
 commit:
 	@echo "Commiting..."
-	@-git update-index --assume-unchanged ".sonarc"
-	@-git update-index --assume-unchanged ".reporc"
+#	@-git update-index --assume-unchanged ".sonarc"
+#	@-git update-index --assume-unchanged ".reporc"
 	@-git commit -am "Commit"
 	@-git push origin $(BRANCH)
 
