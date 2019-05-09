@@ -90,7 +90,7 @@ update:updatefiles
 	@echo "Updating files $(UPDATEFILES)..."
 	@bash $(REPODIR)/update.sh $(UPDATEFILES)
 
-edit:
+edit:files
 	@emacs -nw $(shell cat $(REPODIR)/files.list)
 
 
