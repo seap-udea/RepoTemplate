@@ -171,3 +171,4 @@ coverage-html
 *.xml
 *.bak
 *.zip
+.DS_Store
