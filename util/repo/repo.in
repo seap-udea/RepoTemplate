@@ -37,6 +37,10 @@ cleanrepo:
 	@echo "Cleaning repo files..."
 	@-find . -name "*.zip" -type f -delete
 
+repoinit:
+	git update-index --assume-unchanged ".sonarc" 
+	git update-index --assume-unchanged ".reporc" 
+
 repo:
 	@echo "Creating a new repo..."	
 
@@ -59,6 +63,7 @@ repo:
 	@echo "USER=$(USER)" >> .reporc
 
 	@chmod +x $(UTIL)/sonar/tools/*
+	@make repoinit
 
 deps:
 	@echo "Checking for dependencies..."
@@ -84,6 +89,7 @@ update:updatefiles
 	@echo "Updating files $(UPDATEFILES)..."
 	@bash $(REPODIR)/update.sh $(UPDATEFILES)
 
-pulldev:pull
-	sed -i.bak -e s/71755174// .sonarc
+edit:
+	@emacs -nw $(shell cat $(REPODIR)/files.list)
+
 
