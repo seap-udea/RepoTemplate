@@ -4,10 +4,10 @@
 include .reporc
 CPP=g++
 CC=gcc
-CFLAGS=-I. 
-LFLAGS=-lm
-CXXFLAGS=-I.
-LXXFLAGS=-lm -lcppunit
+CFLAGS=-I. -ftest-coverage -fprofile-arcs
+LFLAGS=-lm -ftest-coverage -fprofile-arcs
+CXXFLAGS=-I. --coverage -fprofile-arcs
+LXXFLAGS=-lm -lcppunit --coverage -fprofile-arcs
 
 #####################################################################
 #COMMON RULES
@@ -15,8 +15,26 @@ LXXFLAGS=-lm -lcppunit
 all:
 	bash compile.sh
 
+#=========================
+#C and C++ compilation
+#=========================
+%.out:%.o $(CMODS)
+	$(CC) $^ $(LFLAGS) -o $@
+
+%.exe:%.opp
+	$(CPP) $^ $(LXXFLAGS) -o $@
+
+%.o:%.c 
+	$(CC) -c $(CFLAGS) $^ -o $@
+
+%.opp:%.cpp
+	$(CPP) -c $(CXXFLAGS) $< -o $@
+
 clean:cleancrap cleanrepo cleansonar cleanout
 
+#=========================
+#Clean
+#=========================
 cleancrap:
 	@echo "Cleaning crap..."
 	@-find . -name "*~" -delete
@@ -30,25 +48,15 @@ cleancrap:
 cleanout:
 	@echo "Cleaning all compiled objects..."
 	@-find . -name "*.o" -delete
+	@-find . -name "*.opp" -delete
+	@-find . -name "*.gcno" -delete
+	@-find . -name "*.gcda" -delete
+	@-find . -name "*.gcov" -delete
+	@-find . -name "*.info" -delete
 	@-find . -name "*.out" -delete
 	@-find . -name "*.exe" -delete
 	@-find . -name "*.pyc" -delete
 	@-find . -name '__pycache__' -type d | xargs rm -fr
-
-#=========================
-#C and C++ compilation
-#=========================
-%.out:%.o module.o
-	$(CC) $^ $(LFLAGS) -o $@
-
-%.o:%.c 
-	$(CC) -c $(CFLAGS) $^ -o $@
-
-%.exe:%.opp Module.opp
-	$(CPP) $^ $(LXXFLAGS) -o $@
-
-%.opp:%.cpp
-	$(CPP) -c $(CXXFLAGS) $< -o $@
 
 #####################################################################
 #EXTERNAL RULES

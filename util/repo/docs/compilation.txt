@@ -1,0 +1,11 @@
+gcov & lcov:
+
+(including beautiful html output)
+https://codeflu.blog/2014/12/26/using-gcov-and-lcov-to-generate-beautiful-c-code-coverage-statistics/
+
+https://medium.com/@naveen.maltesh/generating-code-coverage-report-using-gnu-gcov-lcov-ee54a4de3f11
+
+CPPUnit:
+
+http://www.yolinux.com/TUTORIALS/CppUnit.html
+
