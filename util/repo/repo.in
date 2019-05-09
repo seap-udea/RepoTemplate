@@ -84,7 +84,7 @@ files:clean
 
 updatefiles:
 	@echo "Getting list of files..."
-	@curl -s -o $(REPODIR)/repofiles.list https://raw.githubusercontent.com/$(GITREPO)/master/$(REPODIR)/repofiles.list
+	@curl -s -o $(REPODIR)/repofiles.list https://raw.githubusercontent.com/$(GITREPO)/$(BRANCH)/$(REPODIR)/repofiles.list
 
 update:updatefiles
 	@echo "Updating files $(UPDATEFILES)..."
