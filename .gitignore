@@ -164,7 +164,6 @@ venv.bak/
 *.log
 __pycache__
 RepoBasics/
-.sonar*
 .scanner*
 .coverage
 coverage-html
