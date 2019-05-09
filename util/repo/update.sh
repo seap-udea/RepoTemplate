@@ -6,8 +6,6 @@ rawuri=https://raw.githubusercontent.com/$GITREPO/master/
 
 branch=$(bash $repodir/getbranch.sh)
 rawuri=https://raw.githubusercontent.com/$GITREPO/$branch/
-echo $rawuri
-exit 0
 
 qsel=0
 if [ "x$1" != "x" ]
