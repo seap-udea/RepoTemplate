@@ -38,8 +38,9 @@ cleanrepo:
 	@-find . -name "*.zip" -type f -delete
 
 repoinit:
-	git update-index --assume-unchanged ".sonarc" 
-	git update-index --assume-unchanged ".reporc" 
+	@echo "Initializing repository..."
+	@-git update-index --assume-unchanged ".sonarc" 
+	@-git update-index --assume-unchanged ".reporc" 
 
 repo:
 	@echo "Creating a new repo..."	
