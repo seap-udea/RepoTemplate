@@ -1,3 +1,4 @@
+.gitignore
 .store/pack.conf
 compile.sh
 LICENSE
@@ -7,7 +8,7 @@ module.py
 program.c
 README.md
 tests/test_python_modyle.py
-tmp/update.sh
+tmp/.gitignore
 util/repo/check.sh
 util/repo/deps.conf
 util/repo/deps.sh
@@ -19,6 +20,7 @@ util/repo/pack.sh
 util/repo/repo.in
 util/repo/repofiles.list
 util/repo/update.sh
+util/sonar/build/.gitignore
 util/sonar/build.sh
 util/sonar/coverage.sh
 util/sonar/docs/sonarcloud.md
