@@ -6,6 +6,8 @@ CPP=g++
 CC=gcc
 CFLAGS=-I. 
 LFLAGS=-lm
+CXXFLAGS=-I.
+LXXFLAGS=-lm -lcppunit
 
 #####################################################################
 #COMMON RULES
@@ -36,17 +38,17 @@ cleanout:
 #=========================
 #C and C++ compilation
 #=========================
-%.out:%.o
+%.out:%.o module.o
 	$(CC) $^ $(LFLAGS) -o $@
 
-%.o:%.c
+%.o:%.c 
 	$(CC) -c $(CFLAGS) $^ -o $@
 
-%.exe:%.opp
-	$(CPP) $^ $(LFLAGS) -o $@
+%.exe:%.opp Module.opp
+	$(CPP) $^ $(LXXFLAGS) -o $@
 
 %.opp:%.cpp
-	$(CPP) -c $(CFLAGS) $< -o $@
+	$(CPP) -c $(CXXFLAGS) $< -o $@
 
 #####################################################################
 #EXTERNAL RULES
