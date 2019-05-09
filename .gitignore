@@ -171,3 +171,7 @@ coverage-html
 *.bak
 *.zip
 .DS_Store
+*.gcno
+*.gcda
+*.gcov
+*.info
