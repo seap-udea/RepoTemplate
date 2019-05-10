@@ -171,3 +171,5 @@ coverage-html
 *.gcda
 *.gcov
 *.info
+*.out
+*.tout

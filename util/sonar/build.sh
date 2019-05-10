@@ -2,7 +2,7 @@ echo "Running build wrapper..."
 . .reporc
 sonardir=$UTIL/sonar
 
-$BUILDWRAPPER --out-dir $sonardir/build bash compile.sh TESTING
+$BUILDWRAPPER --out-dir $sonardir/build $BUILD
 
 bjson=$sonardir/build/build-wrapper-dump.json
 if [ "x$(grep '\"captures\":' $bjson)" = "x" ]

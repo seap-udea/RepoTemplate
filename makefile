@@ -21,7 +21,7 @@ endif
 #COMMON RULES
 #####################################################################
 all:
-	bash compile.sh $(TYPE)
+	bash compile.sh
 
 #=========================
 #C and C++ compilation
@@ -34,11 +34,16 @@ all:
 
 clean:cleancrap cleanrepo cleansonar cleanout
 
+%.$(OUT)_run:
+	@make $(@:_run=)
+	@./$(@:_run=)
+
 #####################################################################
 #TESTING
 #####################################################################
 test:
-	TYPE=TESTING make all
+	bash test_c.sh
+	bash test_python.sh
 
 #=========================
 #Clean

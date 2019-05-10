@@ -23,7 +23,7 @@ coverage:runall
 	@bash $(UTIL)/sonar/python-coverage.sh
 
 #!!Prerequisite order is strict!!
-sonar:build coverage
+sonar:build test coverage
 	@echo "Executing sonar-scanner..."
 	@bash $(UTIL)/repo/deps.sh sonar-scanner
 	@bash $(UTIL)/sonar/sonar.sh $(OPT)
