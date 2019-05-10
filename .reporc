@@ -1,23 +1,34 @@
+###############################################################
+#This is what you can modify freely
+###############################################################
 #Directories with source files (those who produce a gcov)
 SOURCES="tests/"
 
-#Directories
-STOREDIR=.store
-UTIL=util
+#Pthon and nosetests binaries
+PYTHON=python3
+NOSETESTS=nosetests3
 
-#Original repo
-GITREPO=seap-udea/RepoTemplate
-
-#If you don't have your public key in github use 
-#GITMETH=https://github.com;GITCHAR=/
-GITMETH=git@github.com;GITCHAR=:
-
+###############################################################
+#Modify only if you are not working in Linux
+###############################################################
 #Sonar binary directories
 #If properly installed
 SONARSCANNER=${HOME}/src/sonar-scanner/bin/sonar-scanner
 BUILDWRAPPER=${HOME}/src/build-wrapper/build-wrapper-linux-x86-64
 
-#Pthon
-PYTHON=python3
-NOSETESTS=nosetests3
+###############################################################
+#Modify only if you are very familiar with github
+###############################################################
+#Original repo
+GITREPO=seap-udea/RepoTemplate
+#If you don't have your public key in github use 
+#GITMETH=https://github.com;GITCHAR=/
+GITMETH=git@github.com;GITCHAR=:
+
+###############################################################
+#Don't modify if you don't know what you're doing
+###############################################################
+#Directories
+STOREDIR=.store
+UTIL=util
 
