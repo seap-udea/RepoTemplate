@@ -91,6 +91,6 @@ update:updatefiles
 	@bash $(REPODIR)/update.sh $(UPDATEFILES)
 
 edit:files
-	@emacs -nw $(shell cat $(REPODIR)/files.list)
+	@emacs -nw .reporc .sonarc $(shell cat $(REPODIR)/files.list)
 
 

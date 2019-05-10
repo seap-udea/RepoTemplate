@@ -7,7 +7,7 @@ $SONARSCANNER \
  -Dsonar.sources=.\
  -Dsonar.exclusions=$sonardir/**,util/**\
  -Dsonar.host.url=https://sonarcloud.io\
- -Dsonar.python.coverage.reportPaths=$sonardir/meta/coverage.xml\
+ -Dsonar.python.coverage.reportPaths=$sonardir/meta/python-coverage.xml\
  -Dsonar.cfamily.gcov.reportsPath=./\
  -Dsonar.sourceEncodings=UTF-8\
  -Dsonar.cfamily.build-wrapper-output=$sonardir/build\

@@ -19,6 +19,8 @@ do
     done
 done
 
+exit 0
+
 #Save coverage files
 find . -name '*.gcda' | xargs mv -t $sonardir/meta
 find . -name '*.gcno' | xargs mv -t $sonardir/meta

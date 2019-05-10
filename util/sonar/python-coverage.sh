@@ -7,8 +7,8 @@ rm -rf .coverage &> /dev/null
 $NOSETESTS \
 --with-coverage \
 --cover-package=./ \
---cover-xml --cover-xml-file=$sonardir/meta/coverage.xml \
---with-xunit --xunit-file=$sonardir/meta/nosetests.xml \
+--cover-xml --cover-xml-file=$sonardir/meta/python-coverage.xml \
+--with-xunit --xunit-file=$sonardir/meta/python-tests.xml \
 --cover-html --cover-html-dir=$sonardir/meta/python-coverage-html \
 
-sed -i.bak 's/filename="/filename=".\//g' $sonardir/meta/coverage.xml
+sed -i.bak 's/filename="/filename=".\//g' $sonardir/meta/python-coverage.xml
