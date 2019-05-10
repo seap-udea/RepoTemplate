@@ -5,36 +5,20 @@ sonardir=$UTIL/sonar
 #Check if coverage files have been generated
 if [ "x$(find . -name '*.gcno')" = "x" ];then make runall;fi
 
-#Run gcov
-dirs=". tests"
-exts="cpp"
-for dir in $dirs
+#Output in xml
+gcovr -r . -x > $sonardir/meta/c-coverage.xml
+
+#Output in html
+htmldir=$sonardir/meta/c-coverage-html
+if [ ! -d $htmldir ];then mkdir -p $htmldir;fi
+gcovr -r . --html --html-details -o $htmldir/coverage.html
+
+#Output in scrren
+gcovr -k -r . 
+
+#Bring here all the gcov
+for file in $(ls tests/tests\#*)
 do
-    for ext in $exts
-    do
-	if [ "x$(ls $dir/*.$ext 2> /dev/null)" != "x" ]
-	then
-	    gcov $dir/*.$ext
-	fi
-    done
-done
-
-exit 0
-
-#Save coverage files
-find . -name '*.gcda' | xargs mv -t $sonardir/meta
-find . -name '*.gcno' | xargs mv -t $sonardir/meta
-find . -name '*.gcov' -exec cp {} {}.bak \;
-
-#Generate coverage information 
-cd $sonardir/meta/
-lcov -t "c-coverage" -o c-coverage.info -c -d . 
-genhtml -o c-coverage-html c-coverage.info
-cd -
-
-#Recover gcov
-for file in $(find . -name '*.gcov.bak')
-do
-    original=$(echo $file |awk -F".bak" '{print $1}')
-    mv $file $original
+    fname=$(echo $file |awk -F"#" '{print $NF}')
+    cp $file $fname
 done
