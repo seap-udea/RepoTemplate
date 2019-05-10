@@ -3,4 +3,7 @@ echo "Running tests and coverage analysis..."
 sonardir=$UTIL/sonar
 
 ./program.out
-./program.exe
+./Program.exe
+tests/test_Module.exe
+
+
