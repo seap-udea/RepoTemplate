@@ -4,9 +4,9 @@
 include .reporc
 CPP=g++
 CC=gcc
-CFLAGS=-I. -ftest-coverage -fprofile-arcs
+CFLAGS=-I. -ftest-coverage -fprofile-arcs 
 LFLAGS=-lm -ftest-coverage -fprofile-arcs
-CXXFLAGS=-I. --coverage -fprofile-arcs
+CXXFLAGS=-I. --coverage -fprofile-arcs -std=c++11
 LXXFLAGS=-lm -lcppunit --coverage -fprofile-arcs
 
 #####################################################################

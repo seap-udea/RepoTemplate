@@ -14,6 +14,7 @@
 #include <cppunit/XmlOutputter.h>
 #include <netinet/in.h>
 #include <Module.cpp>
+#include <util/repo/repo.h>
 
 using namespace std;
 using namespace CppUnit;
@@ -71,7 +72,7 @@ int main(int argc,char* argv[])
   compileroutputter.write ();
 
   //Output XML for Jenkins CPPunit plugin
-  ofstream xmlFileOut("cppTestBasicMathResults.xml");
+  ofstream xmlFileOut(string(METADIR)+string("cppunit.xml"));
   XmlOutputter xmlOut(&collectedresults, xmlFileOut);
   xmlOut.write();
 
