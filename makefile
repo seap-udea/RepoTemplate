@@ -3,28 +3,42 @@
 #####################################################################
 include .reporc
 CPP=g++
-CXXFLAGS=-I. --coverage -fprofile-arcs -std=c++11
-LXXFLAGS=-lm -lcppunit --coverage -fprofile-arcs
+BASE_CFLAGS=-I. -std=c++11
+BASE_LFLAGS=-lm 
+
+#Flags for testing
+ifeq ($(TYPE),TESTING)
+	CXXFLAGS=$(BASE_CFLAGS) --coverage -fprofile-arcs -g -O0
+	LXXFLAGS=$(BASE_LFLAGS) -lcppunit --coverage -fprofile-arcs
+	OUT=tout
+else
+	CXXFLAGS=$(BASE_CFLAGS) -O4
+	LXXFLAGS=$(BASE_LFLAGS)
+	OUT=out
+endif
 
 #####################################################################
 #COMMON RULES
 #####################################################################
 all:
-	bash compile.sh
-
-runall:all
-	bash runall.sh
+	bash compile.sh $(TYPE)
 
 #=========================
 #C and C++ compilation
 #=========================
-%.out:%.o 
+%.$(OUT):%.o 
 	$(CPP) $^ $(LXXFLAGS) -o $@
 
 %.o:%.c 
 	$(CPP) -c $(CXXFLAGS) $^ -o $@
 
 clean:cleancrap cleanrepo cleansonar cleanout
+
+#####################################################################
+#TESTING
+#####################################################################
+test:
+	TYPE=TESTING make all
 
 #=========================
 #Clean
@@ -48,6 +62,7 @@ cleanout:
 	@-find . -name "*.gcov" -delete
 	@-find . -name "*.info" -delete
 	@-find . -name "*.out" -delete
+	@-find . -name "*.tout" -delete
 	@-find . -name "*.pyc" -delete
 	@-find . -name '__pycache__' -type d | xargs rm -fr
 
