@@ -7,6 +7,7 @@ $SONARSCANNER \
  -Dsonar.host.url=https://sonarcloud.io\
  -Dsonar.python.coverage.reportPaths=$sonardir/coverage.xml\
  -Dsonar.python.xunit.reportPath=$sonardir/nosetests.xml\
+ -Dsonar.cfamily.cppunit.reportsPath=.\
  -Dsonar.exclusions=$sonardir/**,util/**\
  -Dsonar.sourceEncodings=UTF-8\
  -Dsonar.cfamily.build-wrapper-output=$sonardir/build\

@@ -26,10 +26,11 @@ do
 	fi
     fi
 
-    echo -en "Checking for $package:"
+    echo -e "Checking for $package:"
+    echo -e "\tCommand: $cmd"
+    echo -en "\tResult: "
 
     ninstall=$(eval echo $install)
-    
     if ! eval $cmd &> /dev/null
     then
 	echo -e "not installed."
