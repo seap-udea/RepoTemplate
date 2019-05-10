@@ -107,8 +107,10 @@ showhtml:
 	@echo "Web processes:"
 	@echo "Simple http server:"
 	@-ps -eaf |grep '$(HTTPCMD)' |grep -v grep
+	@echo "To kill it: make killhtml"
 	@echo "Jupyter server:"
 	@-jupyter notebook list
+	@echo "To kill it: make killjupyter"
 
 killhtml:
 	@echo "Killing html process..."

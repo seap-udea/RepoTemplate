@@ -9,7 +9,13 @@ int foo(void)
 
 int main(int argc,char* argv[])
 {
-  Module *m=new Module();
+  //Run C components
+  double a=1.0,b=2.0;
+  double c=sum(a,b);
+  printf("C: %g + %g  = %g\n",a,b,c);
 
-  double c=m->sumNumbers(2,3);
+  //Run C++ components
+  Module *m=new Module();
+  c=m->sumNumbers(a,b);
+  printf("C++: %g + %g  = %g\n",a,b,c);
 }
