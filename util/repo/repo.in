@@ -94,6 +94,42 @@ update:updatefiles
 	@bash $(REPODIR)/update.sh $(UPDATEFILES)
 
 #####################################################################
+#WEB TOOLS
+#####################################################################
+HTTPCMD=$(PYTHON) -m $(HTTPSERVER) 9000
+JUPYCMD=jupyter-notebook --no-browser --port=8888
+
+PID=$(shell ps -eaf |grep '$(HTTPCMD)' |grep -v grep |cut -f 2 -d' ')
+JPID=$(shell ps -eaf |grep '$(JUPYCMD)' |grep -v grep |cut -f 2 -d' ')
+
+showhtml:
+	@echo "Web processes:"
+	@echo "Simple http server:"
+	@-ps -eaf |grep '$(HTTPCMD)' |grep -v grep
+	@echo "Jupyter server:"
+	@-jupyter notebook list
+
+killhtml:
+	@echo "Killing html process..."
+	@kill -9 $(PID)
+
+html:killhtml
+	@echo "Launching http server..."
+	@nohup $(HTTPCMD) > $(UTIL)/repo/http.log &
+	@sleep 1
+	@echo "See http://localhost:9000"
+
+killjupyter:
+	@echo "Killing jupyter instances..."
+	@kill -9 $(JPID)
+
+jupyter:killjupyter
+	@echo "Launching Jupyter..."
+	@nohup $(JUPYCMD) > $(UTIL)/repo/jupyter.log &
+	@sleep 1
+	@make listjupyter
+
+#####################################################################
 #ONLY FOR REPO TEMPLATE DEVELOPER
 #####################################################################
 pushreporc:

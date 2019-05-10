@@ -19,6 +19,7 @@ util/repo/update.sh
 util/repo/check.sh
 util/repo/files.sh
 util/repo/deps.conf
+util/repo/http.log
 util/repo/getbranch.sh
 util/repo/repo.in
 util/repo/repo.hpp
