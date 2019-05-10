@@ -30,6 +30,8 @@ pullall:
 	@-git reset --hard HEAD
 	@-git pull --all
 
+repo_install:unpack
+
 #####################################################################
 #REPO RULES
 #####################################################################
@@ -78,6 +80,7 @@ unpack:
 	@echo "Unpacking data..."
 	@bash $(REPODIR)/pack.sh unpack
 
+
 files:clean
 	@echo "Generating list of files..."
 	@bash $(REPODIR)/files.sh 
@@ -90,8 +93,15 @@ update:updatefiles
 	@echo "Updating files $(UPDATEFILES)..."
 	@bash $(REPODIR)/update.sh $(UPDATEFILES)
 
+#####################################################################
+#ONLY FOR REPO TEMPLATE DEVELOPER
+#####################################################################
+pushreporc:
+	@echo "Updating .reporc..."
+	@-git update-index --no-assume-unchanged ".reporc" 
+	@-make commit
+	@-git update-index --assume-unchanged ".reporc" 
+
 edit:files
 	@emacs -nw .reporc .sonarc $(shell cat $(REPODIR)/files.list)
 
-repo_install:unpack
-	
