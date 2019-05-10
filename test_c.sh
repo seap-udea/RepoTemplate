@@ -6,3 +6,6 @@ TYPE=TESTING make tests/test_Module.tout_run
 
 #Run integration testing
 bash tests/test_cpp_integration.sh
+
+#Coverage
+gcovr -r .
