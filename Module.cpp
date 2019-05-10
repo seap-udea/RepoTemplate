@@ -9,7 +9,8 @@ public:
   {
     return a-b;
   }
+  double mulNumbers(double a,double b)
+  {
+    return a*b;
+  }
 };
-
-  
-  

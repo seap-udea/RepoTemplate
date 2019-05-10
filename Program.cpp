@@ -2,6 +2,11 @@
 
 using namespace std;
 
+int foo(void)
+{
+  double c=1;
+}
+
 int main(int argc,char* argv[])
 {
   Module *m=new Module();

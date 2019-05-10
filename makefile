@@ -12,7 +12,7 @@ LXXFLAGS=-lm -lcppunit --coverage -fprofile-arcs
 all:
 	bash compile.sh
 
-runall:
+runall:all
 	bash runall.sh
 
 #=========================

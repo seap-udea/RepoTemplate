@@ -10,16 +10,17 @@ cleansonar:
 	@-find $(UTIL)/sonar/build/ -name "*.json" -delete
 	@-find $(UTIL)/sonar/build/ -name "*.log" -delete
 
-coverage:all runall
+coverage:runall
 	@echo "Executing coverage..."
 	@bash $(UTIL)/repo/deps.sh coverage
 	@bash $(UTIL)/sonar/c-coverage.sh
 	@bash $(UTIL)/sonar/python-coverage.sh
 
+#all runall build coverage
 sonar:build coverage
 	@echo "Executing sonar-scanner..."
 	@bash $(UTIL)/repo/deps.sh sonar-scanner
-	@bash $(UTIL)/sonar/sonar.sh
+	@bash $(UTIL)/sonar/sonar.sh $(OPT)
 
 build:
 	@echo "Executing build-wrapper..."
