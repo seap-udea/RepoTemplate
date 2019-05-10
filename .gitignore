@@ -161,15 +161,11 @@ venv.bak/
 \#*\#
 *~
 *.pyc
-*.log
 __pycache__
 RepoBasics/
 .scanner*
 .coverage
 coverage-html
-*.xml
-*.bak
-*.zip
 .DS_Store
 *.gcno
 *.gcda
