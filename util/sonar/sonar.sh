@@ -4,11 +4,11 @@ sonardir=$UTIL/sonar
 
 $SONARSCANNER \
  -Dsonar.sources=.\
- -Dsonar.host.url=https://sonarcloud.io\
- -Dsonar.python.coverage.reportPaths=$sonardir/coverage.xml\
- -Dsonar.python.xunit.reportPath=$sonardir/nosetests.xml\
- -Dsonar.cfamily.cppunit.reportsPath=.\
  -Dsonar.exclusions=$sonardir/**,util/**\
+ -Dsonar.host.url=https://sonarcloud.io\
+ -Dsonar.python.coverage.reportPaths=$sonardir/meta/coverage.xml\
+ -Dsonar.python.xunit.reportPath=$sonardir/meta/nosetests.xml\
+ -Dsonar.cfamily.cppunit.reportsPath=$sonardir/meta/\
  -Dsonar.sourceEncodings=UTF-8\
  -Dsonar.cfamily.build-wrapper-output=$sonardir/build\
  -Dproject.settings=.sonarc\

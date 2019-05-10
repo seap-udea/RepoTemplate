@@ -15,6 +15,9 @@ LXXFLAGS=-lm -lcppunit --coverage -fprofile-arcs
 all:
 	bash compile.sh
 
+runall:
+	bash runall.sh
+
 #=========================
 #C and C++ compilation
 #=========================
