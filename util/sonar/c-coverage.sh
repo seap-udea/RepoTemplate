@@ -2,12 +2,16 @@ echo "Running tests and coverage analysis..."
 . .reporc
 sonardir=$UTIL/sonar
 
-#Run all
-make runall
+#Check if coverage files have been generated
+if [ "x$(find . -name '*.gcno')" = "x" ]
+then
+    make all
+    make runall
+fi
 
 #Run gcov
 dirs=". tests"
-exts="c cpp"
+exts="cpp"
 for dir in $dirs
 do
     for ext in $exts
@@ -20,5 +24,11 @@ do
 done
 
 #Save coverage files
-#find . -name "*.gc*" -exec mv {} $sonardir/meta \;
 find . -name '*.gc*' | xargs mv -t $sonardir/meta
+
+#Generate coverage information 
+cd $sonardir/meta
+lcov -t "c-coverage" -o c-coverage.info -c -d . 
+genhtml -o c-coverage-html c-coverage.info
+cd -
+

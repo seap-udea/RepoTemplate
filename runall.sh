@@ -1,6 +1,10 @@
 #!/bin/bash
 
+#C programs and tests
 ./program.out
-./Program.exe
-tests/test_Module.exe
+tests/test_module.out
+
+#C++ programs and tests
+./Program.out
+tests/test_Module.out
 

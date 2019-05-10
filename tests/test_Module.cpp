@@ -14,7 +14,7 @@
 #include <cppunit/XmlOutputter.h>
 #include <netinet/in.h>
 #include <Module.cpp>
-#include <util/repo/repo.h>
+#include <util/repo/repo.hpp>
 
 using namespace std;
 using namespace CppUnit;

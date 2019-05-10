@@ -3,9 +3,6 @@
 #####################################################################
 include .reporc
 CPP=g++
-CC=gcc
-CFLAGS=-I. -ftest-coverage -fprofile-arcs 
-LFLAGS=-lm -ftest-coverage -fprofile-arcs
 CXXFLAGS=-I. --coverage -fprofile-arcs -std=c++11
 LXXFLAGS=-lm -lcppunit --coverage -fprofile-arcs
 
@@ -21,17 +18,11 @@ runall:
 #=========================
 #C and C++ compilation
 #=========================
-%.out:%.o $(CMODS)
-	$(CC) $^ $(LFLAGS) -o $@
-
-%.exe:%.opp
+%.out:%.o 
 	$(CPP) $^ $(LXXFLAGS) -o $@
 
 %.o:%.c 
-	$(CC) -c $(CFLAGS) $^ -o $@
-
-%.opp:%.cpp
-	$(CPP) -c $(CXXFLAGS) $< -o $@
+	$(CPP) -c $(CXXFLAGS) $^ -o $@
 
 clean:cleancrap cleanrepo cleansonar cleanout
 
@@ -57,7 +48,6 @@ cleanout:
 	@-find . -name "*.gcov" -delete
 	@-find . -name "*.info" -delete
 	@-find . -name "*.out" -delete
-	@-find . -name "*.exe" -delete
 	@-find . -name "*.pyc" -delete
 	@-find . -name '__pycache__' -type d | xargs rm -fr
 

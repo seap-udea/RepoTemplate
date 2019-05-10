@@ -1,5 +1,6 @@
 #!/bin/bash
 make clean
 make program.out
-make Program.exe
-make tests/test_Module.exe
+make Program.out
+make tests/test_Module.out
+make tests/test_module.out

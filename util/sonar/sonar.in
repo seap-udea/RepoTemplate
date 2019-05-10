@@ -4,16 +4,17 @@ cleansonar:
 	@-find . -name "*.log" -delete
 	@-find . -name "*.xml" -delete
 	@-find . -name ".coverage" -delete
-	@-find . -name "coverage-html" -type d | xargs rm -fr
+	@-find . -name "python-coverage-html" -type d | xargs rm -fr
+	@-find . -name "c-coverage-html" -type d | xargs rm -fr
 	@-find . -name ".scannerwork" -type d | xargs rm -fr
 	@-find $(UTIL)/sonar/build/ -name "*.json" -delete
 	@-find $(UTIL)/sonar/build/ -name "*.log" -delete
 
-coverage:all
+coverage:all runall
 	@echo "Executing coverage..."
 	@bash $(UTIL)/repo/deps.sh coverage
-	@bash $(UTIL)/sonar/python-coverage.sh
 	@bash $(UTIL)/sonar/c-coverage.sh
+	@bash $(UTIL)/sonar/python-coverage.sh
 
 sonar:build coverage
 	@echo "Executing sonar-scanner..."
