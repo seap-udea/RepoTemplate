@@ -37,7 +37,8 @@ repo_install:unpack
 #####################################################################
 cleanrepo:
 	@echo "Cleaning repo files..."
-	@-find . -name "*.zip" -type f -delete
+	@-find $(REPODIR) -name "*.zip" -type f -delete
+	@-find $(REPODIR) -name "*.log" -type f -delete
 
 repoinit:
 	@echo "Initializing repository..."
