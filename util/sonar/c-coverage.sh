@@ -17,8 +17,13 @@ gcovr -r . --html --html-details -o $htmldir/coverage.html
 gcovr -k -r . 
 
 #Bring here all the gcov
-for file in $(ls tests/tests\#*)
+for source in $SOURCES
 do
-    fname=$(echo $file |awk -F"#" '{print $NF}')
-    cp $file $fname
+    sbase=$(echo $source | sed -e "s/\//\#/")
+    echo $source$sbase
+    for file in $(ls $source/$sbase*)
+    do
+    	fname=$(echo $file |awk -F"#" '{print $NF}')
+    	echo cp $file $fname
+    done
 done

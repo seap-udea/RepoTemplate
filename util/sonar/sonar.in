@@ -11,24 +11,24 @@ cleansonar:
 	@-find $(UTIL)/sonar/build/ -name "*.json" -delete
 	@-find $(UTIL)/sonar/build/ -name "*.log" -delete
 
-coverage:runall
-	@echo "Executing coverage..."
-	@bash $(UTIL)/repo/deps.sh coverage
-	@bash $(UTIL)/sonar/c2-coverage.sh
-	@bash $(UTIL)/sonar/python-coverage.sh
-
-#all runall build coverage
-sonar:build coverage
-	@echo "Executing sonar-scanner..."
-	@bash $(UTIL)/repo/deps.sh sonar-scanner
-	@bash $(UTIL)/sonar/sonar.sh $(OPT)
-
 build:
 	@echo "Executing build-wrapper..."
 	@bash $(UTIL)/repo/deps.sh build-wrapper
 	@bash $(UTIL)/sonar/build.sh
 
-sonarinstall:
+coverage:runall
+	@echo "Executing coverage..."
+	@bash $(UTIL)/repo/deps.sh coverage
+	@bash $(UTIL)/sonar/c-coverage.sh
+	@bash $(UTIL)/sonar/python-coverage.sh
+
+#!!Prerequisite order is strict!!
+sonar:build coverage
+	@echo "Executing sonar-scanner..."
+	@bash $(UTIL)/repo/deps.sh sonar-scanner
+	@bash $(UTIL)/sonar/sonar.sh $(OPT)
+
+sonar_install:
 	@echo "Installing sonar binaries..."
 	@bash $(UTIL)/repo/deps.sh unzip
 	@bash $(UTIL)/sonar/install.sh

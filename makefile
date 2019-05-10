@@ -63,3 +63,8 @@ include $(UTIL)/repo/repo.in
 #Sonar Rules
 #=========================
 include $(UTIL)/sonar/sonar.in
+
+#####################################################################
+#INSTALL
+#####################################################################
+install:sonar_install repo_install

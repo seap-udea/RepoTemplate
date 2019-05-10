@@ -93,4 +93,5 @@ update:updatefiles
 edit:files
 	@emacs -nw .reporc .sonarc $(shell cat $(REPODIR)/files.list)
 
-
+repo_install:unpack
+	

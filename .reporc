@@ -1,9 +1,16 @@
-#Original repo
-GITREPO=seap-udea/RepoTemplate
+#Directories with source files (those who produce a gcov)
+SOURCES="tests/"
 
 #Directories
 STOREDIR=.store
 UTIL=util
+
+#Original repo
+GITREPO=seap-udea/RepoTemplate
+
+#If you don't have your public key in github use 
+#GITMETH=https://github.com;GITCHAR=/
+GITMETH=git@github.com;GITCHAR=:
 
 #Sonar binary directories
 #If properly installed
