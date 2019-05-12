@@ -1,14 +1,12 @@
 util/sonar/build/.gitignore
 util/sonar/docs/sonarcloud.md
 util/sonar/docs/troubleshooting.md
-util/sonar/c-coverage.sh
 util/sonar/sonar.in
 util/sonar/tools/.gitignore
 util/sonar/tools/updatebin.sh
 util/sonar/tools/sonar-scanner
 util/sonar/tools/build-wrapper-linux-x86-64
 util/sonar/tools/build-wrapper.zip
-util/sonar/python-coverage.sh
 util/sonar/build.sh
 util/sonar/sonar.sh
 util/sonar/install.sh
@@ -17,8 +15,9 @@ util/repo/repofiles.list
 util/repo/pack.sh
 util/repo/docs/troubleshooting.md
 util/repo/docs/compilation.txt
-util/repo/docs/developer.md
 util/repo/update.sh
+util/repo/c-coverage.sh
+util/repo/python-coverage.sh
 util/repo/check.sh
 util/repo/repo.sh
 util/repo/files.sh
