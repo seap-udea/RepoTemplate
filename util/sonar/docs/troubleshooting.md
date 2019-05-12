@@ -9,7 +9,7 @@ show you a recommendation to solve them.
 
 ### `ERROR: Not authorized.`
 
-- **Origin**: Running:
+- **Origin**: It normally arises when running:
 
 		make sonar
 	
@@ -27,9 +27,3 @@ show you a recommendation to solve them.
 
 - **Other instructions**: See [Repository Personalization](../../../README.md#personalization) in the README.
 
-<!--
-# -Dsonar.cfamily.gcov.reportsPath=tests/
-# -Dsonar.c.file.suffixes=-
-# -Dsonar.cpp.file.suffixes=-
-# -Dsonar.objc.file.suffixes=-
--->

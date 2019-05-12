@@ -16,7 +16,7 @@ build:
 	@bash $(UTIL)/repo/deps.sh build-wrapper
 	@bash $(UTIL)/sonar/build.sh
 
-coverage:runall
+coverage:test
 	@echo "Executing coverage..."
 	@bash $(UTIL)/repo/deps.sh coverage
 	@bash $(UTIL)/sonar/c-coverage.sh

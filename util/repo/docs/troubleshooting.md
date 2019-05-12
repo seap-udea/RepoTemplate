@@ -2,7 +2,7 @@
 
 ### Git is always asking for my user and password
 
-- **Origin**: Running:
+- **Origin**: It normally arises when running:
 
 		make commit
 	

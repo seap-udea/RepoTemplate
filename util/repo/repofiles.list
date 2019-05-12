@@ -15,6 +15,7 @@ util/sonar/install.sh
 util/sonar/meta/.gitignore
 util/repo/repofiles.list
 util/repo/pack.sh
+util/repo/docs/repo.mv
 util/repo/docs/troubleshooting.md
 util/repo/docs/compilation.txt
 util/repo/update.sh
