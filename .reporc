@@ -1,12 +1,18 @@
 ###############################################################
 #This is what you can modify freely
 ###############################################################
-#Directories with source files (those who produce a gcov)
+#Directories with source files
 SOURCES="tests/"
+
+#Compilation 
+BUILD="make all"
 
 #Pthon and nosetests binaries
 PYTHON=python3
 NOSETESTS=nosetests3
+
+#Small http server
+HTTPSERVER=http.server
 
 ###############################################################
 #Modify only if you are not working in Linux
@@ -21,9 +27,9 @@ BUILDWRAPPER=${HOME}/src/build-wrapper/build-wrapper-linux-x86-64
 ###############################################################
 #Original repo
 GITREPO=seap-udea/RepoTemplate
-#If you don't have your public key in github use 
-#GITMETH=https://github.com;GITCHAR=/
-GITMETH=git@github.com;GITCHAR=:
+GITMETH=https://github.com;GITCHAR=/
+#If you have your public key in github use 
+#GITMETH=git@github.com-<user>;GITCHAR=:
 
 ###############################################################
 #Don't modify if you don't know what you're doing
