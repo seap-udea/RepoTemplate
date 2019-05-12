@@ -82,6 +82,18 @@ JUPYCMD=jupyter-notebook --no-browser --port=8888
 PID=$(shell ps -eaf |grep '$(HTTPCMD)' |grep -v grep |cut -f 2 -d' ')
 JPID=$(shell ps -eaf |grep '$(JUPYCMD)' |grep -v grep |cut -f 2 -d' ')
 
+ifeq ($(PID),)
+	KILLHTML=":"
+else
+	KILLHTML=kill -9 $(PID)
+endif
+
+ifeq ($(JPID),)
+	KILLJUPY=":"
+else
+	KILLJUPY=kill -9 $(JPID)
+endif
+
 showhtml:
 	@echo "Web processes:"
 	@echo "Simple http server:"
@@ -93,7 +105,8 @@ showhtml:
 
 killhtml:
 	@echo "Killing html process..."
-	@kill -9 $(PID)
+	@echo "\tCommand: $(KILLHTML)"
+	@$(KILLHTML)
 
 html:killhtml
 	@echo "Launching http server..."
@@ -103,13 +116,14 @@ html:killhtml
 
 killjupyter:
 	@echo "Killing jupyter instances..."
-	@kill -9 $(JPID)
+	@echo "\tCommand: $(KILLJUPY)"
+	@$(KILLJUPY)
 
 jupyter:killjupyter
 	@echo "Launching Jupyter..."
 	@nohup $(JUPYCMD) > $(UTIL)/repo/jupyter.log &
 	@sleep 1
-	@make listjupyter
+	@make showhtml
 
 #####################################################################
 #ONLY FOR REPO TEMPLATE DEVELOPER
