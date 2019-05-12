@@ -25,7 +25,7 @@ do
     fname=$(echo $file |awk -F"#" '{print $NF}')
     dirname=$(echo $file |awk -F"#$fname" '{print $1}')
     #echo "Dir: $dirname, File: $fname, Fname: $fname"
-    cp $filegcov $fname
+    mv $filegcov $fname
 done
 
 # exit 0
