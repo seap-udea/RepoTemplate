@@ -47,28 +47,7 @@ repoinit:
 
 repo:
 	@echo "Creating a new repo..."	
-
-	@echo "Removing all git information..."
-	@rm -rf .git
-
-	@echo "Creating GitHub repository $(USER)/$(REPO) (if this is not the right user ctrl+c and run: USER=<user> make repo)"
-	@curl -o /dev/null -s -u '$(USER)' https://api.github.com/user/repos -d '{"name":"$(REPO)"}'
-
-	@echo "Initializing repo..."
-	@git init
-	@git add -A
-	@echo "remote add origin $(GITMETH)-$(USER)$(GITCHAR)$(USER)/$(REPO).git"
-#	@git remote add origin $(GITMETH)-$(USER)$(GITCHAR)$(USER)/$(REPO).git
-#	@git commit -am "New Repo"
-#	@echo "Pushing files..."
-#	@git push origin master
-
-	@echo "#Automatically generate by make repo:" >> .reporc
-	@echo "REPO=$(REPO)" >> .reporc
-	@echo "USER=$(USER)" >> .reporc
-
-	@chmod +x $(UTIL)/sonar/tools/*
-	@make repoinit
+	@bash $(REPODIR)/repo.sh
 
 deps:
 	@echo "Checking for dependencies..."
