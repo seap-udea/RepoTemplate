@@ -120,6 +120,12 @@ pushreporc:
 	@-make commit
 	@-git update-index --assume-unchanged ".reporc" 
 
+pushsonarc:
+	@echo "Updating .sonarc..."
+	@-git update-index --no-assume-unchanged ".sonarc" 
+	@-make commit
+	@-git update-index --assume-unchanged ".sonarc" 
+
 edit:files
 	@emacs -nw .reporc .sonarc $(shell cat $(REPODIR)/files.list)
 
