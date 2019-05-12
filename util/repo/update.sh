@@ -2,8 +2,6 @@
 . .reporc
 
 repodir=$UTIL/repo
-rawuri=https://raw.githubusercontent.com/$GITREPO/master/
-
 branch=$(bash $repodir/getbranch.sh)
 rawuri=https://raw.githubusercontent.com/$GITREPO/$branch/
 
