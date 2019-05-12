@@ -3,7 +3,7 @@ echo "Running tests and coverage analysis..."
 sonardir=$UTIL/sonar
 
 #Check if coverage files have been generated
-if [ "x$(find . -name '*.gcno')" = "x" ];then make runall;fi
+if [ "x$(find . -name '*.gcno')" = "x" ];then make test;fi
 
 #Output in xml
 gcovr -r . -x > $sonardir/meta/c-coverage.xml
