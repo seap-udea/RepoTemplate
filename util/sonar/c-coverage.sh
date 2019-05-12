@@ -16,17 +16,30 @@ gcovr -r . --html --html-details -o $htmldir/coverage.html
 #Output in scrren
 gcovr -k -r . 
 
-#Bring here all the gcov
-for source in $SOURCES
+make cleancrap
+
+for filegcov in $(find . -name "*.gcov")
 do
-    sbase=$(echo $source | sed -e "s/\//\#/")
-    echo $source$sbase
-    for file in $(ls $source/$sbase* 2> /dev/null)
-    do
-	echo "Copying gcov file: $file"
-    	fname=$(echo $file |awk -F"#" '{print $NF}')
-    	cp $file $fname
-    done
+    file=$(basename $filegcov)
+    if [ "x$(echo $file | grep '#')" = "x" ];then continue;fi
+    fname=$(echo $file |awk -F"#" '{print $NF}')
+    dirname=$(echo $file |awk -F"#$fname" '{print $1}')
+    #echo "Dir: $dirname, File: $fname, Fname: $fname"
+    cp $filegcov $fname
 done
 
-make cleancrap
+# exit 0
+
+# #Bring here all the gcov
+# for source in $SOURCES
+# do
+#     sbase=$(echo $source | sed -e "s/\//\#/")
+#     echo $source$sbase
+#     for file in $(ls $source/$sbase* 2> /dev/null)
+#     do
+# 	echo "Copying gcov file: $file"
+#     	fname=$(echo $file |awk -F"#" '{print $NF}')
+#     	cp $file $fname
+#     done
+# done
+
