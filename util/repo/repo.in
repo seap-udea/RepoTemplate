@@ -58,10 +58,10 @@ repo:
 	@git init
 	@git add -A
 	@echo "remote add origin $(GITMETH)-$(USER)$(GITCHAR)$(USER)/$(REPO).git"
-	@git remote add origin $(GITMETH)-$(USER)$(GITCHAR)$(USER)/$(REPO).git
-	@git commit -am "New Repo"
-	@echo "Pushing files..."
-	@git push origin master
+#	@git remote add origin $(GITMETH)-$(USER)$(GITCHAR)$(USER)/$(REPO).git
+#	@git commit -am "New Repo"
+#	@echo "Pushing files..."
+#	@git push origin master
 
 	@echo "#Automatically generate by make repo:" >> .reporc
 	@echo "REPO=$(REPO)" >> .reporc
