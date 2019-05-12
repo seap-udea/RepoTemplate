@@ -1,7 +1,10 @@
 #!/bin/bash
 . .reporc
+repodir=$UTIL/repo
 REPO=$(basename $(pwd))
 ADDCMD="git remote add origin $GITMETH$GITCHAR$USER/$REPO.git"
+
+bash $repodir/getbranch.sh > .branch
 
 echo "Removing all git information..."
 mv .git .git.bak

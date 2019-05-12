@@ -2,7 +2,12 @@
 . .reporc
 
 repodir=$UTIL/repo
-branch=$(bash $repodir/getbranch.sh)
+branch=$(cat .branch)
+if [ "x$branch" = "x" ];then
+    echo "You must choose which branch to update in .branch"
+    exit 1
+fi
+
 rawuri=https://raw.githubusercontent.com/$GITREPO/$branch/
 
 qsel=0
