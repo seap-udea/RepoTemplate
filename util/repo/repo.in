@@ -57,7 +57,8 @@ repo:
 	@echo "Initializing repo..."
 	@git init
 	@git add -A
-	@git remote add origin $(GITMETH}-$(USER)${GITCHAR}$(USER)/$(REPO).git
+	@echo "remote add origin $(GITMETH)-$(USER)$(GITCHAR)$(USER)/$(REPO).git"
+	@git remote add origin $(GITMETH)-$(USER)$(GITCHAR)$(USER)/$(REPO).git
 	@git commit -am "New Repo"
 	@echo "Pushing files..."
 	@git push origin master
