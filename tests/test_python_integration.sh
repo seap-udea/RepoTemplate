@@ -1,2 +1,4 @@
 #!/bin/bash
-python program.py
+. .reporc
+
+$PYTHON program.py
