@@ -27,19 +27,3 @@ do
     #echo "Dir: $dirname, File: $fname, Fname: $fname"
     mv $filegcov $fname
 done
-
-# exit 0
-
-# #Bring here all the gcov
-# for source in $SOURCES
-# do
-#     sbase=$(echo $source | sed -e "s/\//\#/")
-#     echo $source$sbase
-#     for file in $(ls $source/$sbase* 2> /dev/null)
-#     do
-# 	echo "Copying gcov file: $file"
-#     	fname=$(echo $file |awk -F"#" '{print $NF}')
-#     	cp $file $fname
-#     done
-# done
-

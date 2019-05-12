@@ -1,35 +1,22 @@
-## Problems with Sonar?
+## Problems with repository?
 
-SonarQube is a sofisticated and intricated tool.  It is not uncommon
-that you may have some troubles making it working.  
-
-We have test it in normal conditions and it works properly.  Still, if
-you have any of the following issues when running `make sonar`, we
-show you a recommendation to solve them.
-
-### `ERROR: Not authorized.`
+### Git is always asking for my user and password
 
 - **Origin**: Running:
 
-		make sonar
+		make commit
 	
-- **Error message**: You obtain this error:
+- **Error message**: it asks me for user and password.
 
-		ERROR: Not authorized. Please check the properties sonar.login and sonar.password.
-		ERROR: 
-		ERROR: Re-run SonarQube Scanner using the -X switch to enable full debug logging.
+- **Solution**: execute:
 
-- **Solution**: Edit the `.sonarc` file including the proper credentials, eg:
+  		git remote set-url origin git@github.com:<user>/<RepoName>.git
 
-		sonar.projectKey=iHacker_NewRepo
-		sonar.organization=iHacker-github
-		sonar.login=2084a54ce06b4d193900141cf67a163681f746d1
+	or alternatively, in case you have a `.ssh/config` file and
+	several keys configured (see [Git
+	configuration](../../../README.md#gitconfig) in README) , do:
 
-- **Other instructions**: See [Repository Personalization](README.md#) in the README.
+  		git remote set-url origin git@github.com-<user>:<user>/<RepoName>.git
 
-<!--
-# -Dsonar.cfamily.gcov.reportsPath=tests/
-# -Dsonar.c.file.suffixes=-
-# -Dsonar.cpp.file.suffixes=-
-# -Dsonar.objc.file.suffixes=-
--->
+- **Other instructions**: See README.
+
