@@ -27,3 +27,5 @@ do
     	echo cp $file $fname
     done
 done
+
+make cleancrap
