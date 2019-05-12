@@ -21,10 +21,11 @@ for source in $SOURCES
 do
     sbase=$(echo $source | sed -e "s/\//\#/")
     echo $source$sbase
-    for file in $(ls $source/$sbase*)
+    for file in $(ls $source/$sbase* 2> /dev/null)
     do
+	echo "Copying gcov file: $file"
     	fname=$(echo $file |awk -F"#" '{print $NF}')
-    	echo cp $file $fname
+    	cp $file $fname
     done
 done
 
