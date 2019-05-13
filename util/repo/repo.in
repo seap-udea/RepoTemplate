@@ -181,7 +181,7 @@ pushreporc:
 
 pushsonarc:
 	@echo "Updating reporc..."
-	@-git update-index --no-assume-unchanged $(REPODIR)/reporc
+	@-git update-index --no-assume-unchanged $(REPODIR)/sonarc
 	@-make commit
-	@-git update-index --assume-unchanged $(REPODIR)/reporc
+	@-git update-index --assume-unchanged $(REPODIR)/sonarc
 
