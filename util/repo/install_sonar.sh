@@ -1,6 +1,6 @@
 #!/bin/bash
-. .reporc
-sonardir=$UTIL/sonar
+. .pack/packrc
+. $REPODIR/reporc
 
 #Install sonar scanner
 if ${SONARSCANNER} --help &> /dev/null
@@ -10,7 +10,7 @@ else
     #Download sonar-scanner
     if [ ! -f /tmp/sonar-scanner-linux.zip ]
     then
-	bash $sonardir/tools/updatebin.sh
+	wget -O /tmp/sonar-scanner-linux.zip $SONARBIN
     else
 	echo "Sonar scanner binaries already download."
     fi
