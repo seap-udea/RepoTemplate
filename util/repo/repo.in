@@ -153,7 +153,7 @@ killhtml:
 
 html:killhtml
 	@echo "Launching http server..."
-	@nohup $(HTTPCMD) > $(UTIL)/repo/http.log &
+	@nohup $(HTTPCMD) > $(REPODIR)/http.log &
 	@sleep 1
 	@echo "See http://localhost:9000"
 
@@ -164,7 +164,7 @@ killjupyter:
 
 jupyter:killjupyter
 	@echo "Launching Jupyter..."
-	@nohup $(JUPYCMD) > $(UTIL)/repo/jupyter.log &
+	@nohup $(JUPYCMD) > $(REPODIR)/jupyter.log &
 	@sleep 1
 	@make showhtml
 
