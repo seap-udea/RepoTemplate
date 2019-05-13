@@ -1,7 +1,9 @@
 #Directories
 REPODIR=util/repo
+STOREDIR=.store
 
 #Log files
 LOGFILE=.pack/log
+
 
 #Execute

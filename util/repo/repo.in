@@ -16,15 +16,6 @@ deps:
 	@echo "Checking for dependencies..."
 	@bash $(REPODIR)/deps.sh
 
-pack:
-	@echo "Packing data..."
-	@bash $(REPODIR)/pack.sh
-
-unpack:
-	@echo "Unpacking data..."
-	@bash $(REPODIR)/pack.sh unpack
-
-
 #####################################################################
 #GIT RULES
 #####################################################################
