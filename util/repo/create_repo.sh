@@ -24,7 +24,7 @@ git commit -am "New Repo"
 git push origin master
 
 echo "#Automatically generate by make repo:" >> $REPODIR/reporc
-echo "REPO=$REPO" >> $REPODIR/reporc
+echo "REPO=$reponame" >> $REPODIR/reporc
 echo "USER=$USER" >> $REPODIR/reporc
 git update-index --assume-unchanged $REPODIR/reporc
 git update-index --assume-unchanged $REPODIR/sonarc
