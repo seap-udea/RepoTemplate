@@ -6,11 +6,28 @@ include $(REPODIR)/reporc
 BRANCH=$(shell bash $(UTIL)/repo/getbranch.sh)
 
 #####################################################################
+#REPO INSTALL
+#####################################################################
+repo:
+	@echo "Creating a new repo..."	
+	@bash $(REPODIR)/create_repo.sh USER=$(USER)
+
+deps:
+	@echo "Checking for dependencies..."
+	@bash $(REPODIR)/deps.sh
+
+pack:
+	@echo "Packing data..."
+	@bash $(REPODIR)/pack.sh
+
+unpack:
+	@echo "Unpacking data..."
+	@bash $(REPODIR)/pack.sh unpack
+
+
+#####################################################################
 #GIT RULES
 #####################################################################
-branch:
-	@echo "We are in branch '$(BRANCH)'"
-
 commit:
 	@echo "Commiting..."
 	@-git commit -am "Commit"
@@ -25,10 +42,8 @@ pull:
 	@-git reset --hard HEAD
 	@-git pull origin $(BRANCH)
 
-pullall:
-	@echo "Pulling new files..."
-	@-git reset --hard HEAD
-	@-git pull --all
+branch:
+	@echo "We are in branch '$(BRANCH)'"
 
 repo_install:
 	@echo "Installing repo..."
@@ -82,28 +97,6 @@ cleanrepo:
 	@-find $(REPODIR)/ -name "c-coverage-html" -type d | xargs rm -fr
 	@-find $(REPODIR)//build/ -name "*.json" -delete
 	@-find $(REPODIR)//build/ -name "*.log" -delete
-
-repoinit:
-	@echo "Initializing repository..."
-	@-git update-index --assume-unchanged ".sonarc" 
-	@-git update-index --assume-unchanged ".reporc" 
-
-repo:
-	@echo "Creating a new repo..."	
-	@bash $(REPODIR)/repo.sh USER=$(USER)
-
-deps:
-	@echo "Checking for dependencies..."
-	@bash $(REPODIR)/deps.sh
-
-pack:
-	@echo "Packing data..."
-	@bash $(REPODIR)/pack.sh
-
-unpack:
-	@echo "Unpacking data..."
-	@bash $(REPODIR)/pack.sh unpack
-
 
 files:clean
 	@echo "Generating list of files..."
@@ -175,18 +168,17 @@ jupyter:killjupyter
 #####################################################################
 #ONLY FOR REPO TEMPLATE DEVELOPER
 #####################################################################
-pushreporc:
-	@echo "Updating .reporc..."
-	@-git update-index --no-assume-unchanged ".reporc" 
-	@-make commit
-	@-git update-index --assume-unchanged ".reporc" 
+pullall:
+	@echo "Pulling new files..."
+	@-git reset --hard HEAD
+	@-git pull --all
 
-pushsonarc:
-	@echo "Updating .sonarc..."
-	@-git update-index --no-assume-unchanged ".sonarc" 
+pushreporc:
+	@echo "Updating reporc..."
+	@-git update-index --no-assume-unchanged $(REPODIR)/reporc
 	@-make commit
-	@-git update-index --assume-unchanged ".sonarc" 
+	@-git update-index --assume-unchanged $(REPODIR)/reporc
 
 edit:files
-	@emacs -nw .reporc .sonarc $(shell cat $(REPODIR)/files.list)
+	@emacs -nw $(shell cat $(REPODIR)/files.list)
 

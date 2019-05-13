@@ -1,6 +1,7 @@
 #####################################################################
 #VARIABLES
 #####################################################################
+PACKDIR=.pack
 CPP=g++
 CXXFLAGS=-I. -std=c++11
 LXXFLAGS=-lm 
@@ -47,6 +48,14 @@ cleanout:
 	@-find . -name "*.tout" -delete
 	@-find . -name "*.pyc" -delete
 	@-find . -name '__pycache__' -type d | xargs rm -fr
+
+pack:
+	@echo "Packing data..."
+	@bash $(PACKDIR)/pack.sh
+
+unpack:
+	@echo "Unpacking data..."
+	@bash $(PACKDIR)/pack.sh unpack
 
 #####################################################################
 #EXTERNAL RULES
