@@ -3,7 +3,7 @@
 . $REPODIR/reporc
 
 #Install sonar scanner
-if ${SONARSCANNER}-${SYSTEM} --help &> /dev/null
+if ${SONARSCANNER} --help &> /dev/null
 then 
     echo "Sonar scanner is already installed."
 else
