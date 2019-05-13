@@ -13,7 +13,7 @@ repo:
 	@bash $(REPODIR)/create_repo.sh USER=$(USER)
 
 deps_repo:
-	@echo "Checking for dependencies..."
+	@echo "Checking for dependencies for $(SYSTEM)..."
 	@bash $(PACKDIR)/deps.sh $(REPODIR)/deps_repo_${SYSTEM}.conf
 
 #####################################################################
@@ -192,7 +192,7 @@ pushsonarc:
 
 pushpackrc:
 	@echo "Updating reporc..."
-	@-git update-index --no-assume-unchanged $(REPODIR)/packrc
+	@-git update-index --no-assume-unchanged .pack/packrc
 	@-make commit
-	@-git update-index --assume-unchanged $(REPODIR)/packrc
+	@-git update-index --assume-unchanged .pack/packrc
 
