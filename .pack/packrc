@@ -9,3 +9,6 @@ STOREDIR=.store
 #Log files
 LOGFILE=.pack/log
 
+#System
+SYSTEM=linux
+SYSTEM=macosx

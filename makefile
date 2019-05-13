@@ -27,8 +27,8 @@ all:
 #BASIC RULES
 #####################################################################
 deps:
-	@echo "Checking dependencies..."
-	@bash $(PACKDIR)/deps.sh $(PACKDIR)/deps_pack.conf 
+	@echo "Checking dependencies for $(SYSTEM)..."
+	@bash $(PACKDIR)/deps.sh $(PACKDIR)/deps_pack_$(SYSTEM).conf 
 
 clean:cleancrap cleanout cleanrepo
 
