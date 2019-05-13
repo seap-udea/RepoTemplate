@@ -6,7 +6,7 @@
 reponame=$(basename $(pwd))
 
 #Store branch
-bash $repodir/getbranch.sh > .branch
+bash $REPODIR/getbranch.sh > .branch
 
 echo "Removing all git information..."
 mv .git .git.bak
@@ -23,10 +23,10 @@ echo "Commiting and pushing files..."
 git commit -am "New Repo"
 git push origin master
 
-echo "#Automatically generate by make repo:" >> $repodir/reporc
-echo "REPO=$REPO" >> $repodir/reporc
-echo "USER=$USER" >> $repodir/reporc
-git update-index --assume-unchanged $(REPODIR)/reporc
-git update-index --assume-unchanged $(REPODIR)/sonarc
+echo "#Automatically generate by make repo:" >> $REPODIR/reporc
+echo "REPO=$REPO" >> $REPODIR/reporc
+echo "USER=$USER" >> $REPODIR/reporc
+git update-index --assume-unchanged $REPODIR/reporc
+git update-index --assume-unchanged $REPODIR/sonarc
 
 echo "Next: run 'make deps'"
