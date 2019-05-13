@@ -66,6 +66,12 @@ unpack:
 	@echo "Unpacking data..."
 	@bash $(PACKDIR)/pack.sh unpack
 
+pushpackrc:
+	@echo "Updating reporc..."
+	@-git update-index --no-assume-unchanged $(REPODIR)/packrc
+	@-make commit
+	@-git update-index --assume-unchanged $(REPODIR)/packrc
+
 #####################################################################
 #EXTERNAL RULES
 #####################################################################

@@ -185,3 +185,9 @@ pushsonarc:
 	@-make commit
 	@-git update-index --assume-unchanged $(REPODIR)/sonarc
 
+pushpackrc:
+	@echo "Updating reporc..."
+	@-git update-index --no-assume-unchanged $(REPODIR)/packrc
+	@-make commit
+	@-git update-index --assume-unchanged $(REPODIR)/packrc
+

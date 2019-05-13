@@ -29,4 +29,4 @@ echo "USER=$USER" >> $REPODIR/reporc
 git update-index --assume-unchanged $REPODIR/reporc
 git update-index --assume-unchanged $REPODIR/sonarc
 
-echo "Next: run 'make deps'"
+echo "Next: run 'make deps_repo'"
