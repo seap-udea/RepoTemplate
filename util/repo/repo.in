@@ -99,13 +99,18 @@ sonar:build test coverage
 #####################################################################
 #FILES
 #####################################################################
+SRCBRANCH=$(shell cat .branch)
+ifeq ($(SRCBRANCH),)
+	SRCBRANCH=master
+endif
+
 files:clean
 	@echo "Generating list of files..."
 	@bash $(REPODIR)/files.sh 
 
 updatefiles:
 	@echo "Getting list of files..."
-	@curl -s -o $(REPODIR)/repofiles.list https:/raw.githubusercontent.com/$(GITREPO)/$(BRANCH)/$(REPODIR)/repofiles.list
+	@curl -s -o $(REPODIR)/repofiles.list https:/raw.githubusercontent.com/$(GITREPO)/$(SRCBRANCH)/$(REPODIR)/repofiles.list
 
 update:updatefiles
 	@echo "Updating files $(UPDATEFILES)..."
