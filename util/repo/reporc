@@ -26,5 +26,4 @@ BUILDWRAPPER=${HOME}/src/build-wrapper/build-wrapper-linux-x86-64
 ###############################################################
 #Directories
 STOREDIR=.store
-UTIL=util
 

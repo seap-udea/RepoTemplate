@@ -2,7 +2,6 @@
 PYTHON=python3
 NOSETESTS=nosetests3
 
-
 #Directories
 REPODIR=util/repo
 STOREDIR=.store
@@ -10,5 +9,3 @@ STOREDIR=.store
 #Log files
 LOGFILE=.pack/log
 
-
-#Execute
