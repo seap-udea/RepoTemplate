@@ -2,7 +2,6 @@ echo "Running sonar scanner..."
 . .pack/packrc
 . $REPODIR/reporc
 
-make build
 $SONARSCANNER \
  $@ \
  -Dsonar.sources=.\
