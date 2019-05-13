@@ -5,7 +5,7 @@ PACKDIR=.pack/
 include $(PACKDIR)/packrc
 
 CPP=g++
-CXXFLAGS=-I. -std=c++11
+CXXFLAGS=-I. -std=c++11 -Wno
 LXXFLAGS=-lm 
 
 #####################################################################

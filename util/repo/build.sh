@@ -2,7 +2,7 @@ echo "Running build wrapper..."
 . .pack/packrc
 . $REPODIR/reporc
 
-$BUILDWRAPPER --out-dir $REPODIR/build $BUILD
+$BUILDWRAPPER-${SYSTEM} --out-dir $REPODIR/build $BUILD
 
 bjson=$REPODIR/build/build-wrapper-dump.json
 if [ "x$(grep '\"captures\":' $bjson)" = "x" ]
