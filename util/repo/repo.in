@@ -114,7 +114,7 @@ updatefiles:
 
 update:updatefiles
 	@echo "Updating files $(UPDATEFILES)..."
-	@bash $(REPODIR)/update.sh $(UPDATEFILES)
+	@bash $(REPODIR)/update.sh $(FILES)
 
 #####################################################################
 #ONLY FOR REPO TEMPLATE DEVELOPER

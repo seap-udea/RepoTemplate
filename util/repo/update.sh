@@ -20,6 +20,7 @@ fi
 
 for file in $(cat $REPODIR/repofiles.list |grep -v "#")
 do
+    if [ $file = "reporc" -o $file = "sonarc" -o $file = "packrc" ];then continue;fi
     if [ $qsel -gt 0 ]
     then
 	if [[ " ${array[@]} " =~ " ${file} " ]];then
