@@ -3,7 +3,7 @@
 #####################################################################
 REPODIR=util/repo/
 include $(REPODIR)/reporc
-BRANCH=$(shell bash $(UTIL)/repo/getbranch.sh)
+BRANCH=$(shell bash $(REPODIR)/getbranch.sh)
 
 #####################################################################
 #REPO INSTALL
