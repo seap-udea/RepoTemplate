@@ -1,21 +1,9 @@
 #####################################################################
 #VARIABLES
 #####################################################################
-include .reporc
 CPP=g++
-BASE_CFLAGS=-I. -std=c++11
-BASE_LFLAGS=-lm 
-
-#Flags for testing
-ifeq ($(TYPE),TESTING)
-	CXXFLAGS=$(BASE_CFLAGS) --coverage -fprofile-arcs -g -O0
-	LXXFLAGS=$(BASE_LFLAGS) -lcppunit --coverage -fprofile-arcs
-	OUT=tout
-else
-	CXXFLAGS=$(BASE_CFLAGS) -O4
-	LXXFLAGS=$(BASE_LFLAGS)
-	OUT=out
-endif
+CXXFLAGS=-I. -std=c++11
+LXXFLAGS=-lm 
 
 #####################################################################
 #COMMON RULES
@@ -23,27 +11,16 @@ endif
 all:
 	bash compile.sh
 
+clean:cleancrap cleanout cleanrepo
+
 #=========================
 #C and C++ compilation
 #=========================
-%.$(OUT):%.o 
+%.out:%.o 
 	$(CPP) $^ $(LXXFLAGS) -o $@
 
-%.o:%.c 
+%.o:%.cpp 
 	$(CPP) -c $(CXXFLAGS) $^ -o $@
-
-clean:cleancrap cleanrepo cleansonar cleanout
-
-%.$(OUT)_run:
-	@make $(@:_run=)
-	@./$(@:_run=)
-
-#####################################################################
-#TESTING
-#####################################################################
-test:
-	bash test_c.sh
-	bash test_python.sh
 
 #=========================
 #Clean
@@ -77,9 +54,5 @@ cleanout:
 #=========================
 #Repo Rules
 #=========================
-include $(UTIL)/repo/repo.in
+include util/repo/repo.in
 
-#####################################################################
-#INSTALL
-#####################################################################
-install:sonar_install repo_install

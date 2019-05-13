@@ -1,7 +1,8 @@
 #####################################################################
 #VARIABLES
 #####################################################################
-REPODIR=$(UTIL)/repo/
+REPODIR=util/repo/
+include $(REPODIR)/reporc
 BRANCH=$(shell bash $(UTIL)/repo/getbranch.sh)
 
 #####################################################################
@@ -29,24 +30,58 @@ pullall:
 	@-git reset --hard HEAD
 	@-git pull --all
 
-repo_install:unpack
+repo_install:
+	@echo "Installing repo..."
+	@npack
+	@bash $(REPODIR)//deps.sh unzip
+	@bash $(REPODIR)//install.sh
+
+#####################################################################
+#TEST COMPILATION RULES
+#####################################################################
+CTXXFLAGS=$(CXXFLAGS) --coverage -fprofile-arcs -g -O0
+LTXXFLAGS=$(LXXFLAGS) -lcppunit --coverage -fprofile-arcs
+
+%.$(OUT)_run:
+	@make $(@:_run=)
+	@./$(@:_run=)
+
+%.tout:%.to
+	$(CPP) $^ $(LTXXFLAGS) -o $@
+
+%.to:%.cpp
+	$(CPP) -c $(CTXXFLAGS) $^ -o $@
 
 #####################################################################
 #COVERAGE
 #####################################################################
 coverage:
 	@echo "Executing coverage..."
-	@bash $(UTIL)/repo/deps.sh coverage
-	@bash $(UTIL)/repo/c-coverage.sh
-	@bash $(UTIL)/repo/python-coverage.sh
+	@bash $(REPODIR)//deps.sh coverage
+	@bash $(REPODIR)//c-coverage.sh
+	@bash $(REPODIR)//python-coverage.sh
+
+test:
+	bash test_c.sh
+	bash test_python.sh
 
 #####################################################################
 #REPO RULES
 #####################################################################
 cleanrepo:
 	@echo "Cleaning repo files..."
+	@-find . -name ".coverage" -delete
+	@-find . -name ".scannerwork" -type d | xargs rm -fr
 	@-find $(REPODIR) -name "*.zip" -type f -delete
 	@-find $(REPODIR) -name "*.log" -delete
+	@-find $(REPODIR)/ -name "*.bak" -delete
+	@-find $(REPODIR)/ -name "*.log" -delete
+	@-find $(REPODIR)/ -name "*.xml" -delete
+	@-find $(REPODIR)/ -name "*.html" -delete
+	@-find $(REPODIR)/ -name "python-coverage-html" -type d | xargs rm -fr
+	@-find $(REPODIR)/ -name "c-coverage-html" -type d | xargs rm -fr
+	@-find $(REPODIR)//build/ -name "*.json" -delete
+	@-find $(REPODIR)//build/ -name "*.log" -delete
 
 repoinit:
 	@echo "Initializing repository..."
@@ -85,34 +120,19 @@ update:updatefiles
 #####################################################################
 #SONAR RULES
 #####################################################################
-cleansonar:
-	@echo "Cleaning sonar files..."
-	@-find . -name ".coverage" -delete
-	@-find . -name ".scannerwork" -type d | xargs rm -fr
-	@-find $(REPODIR)/ -name "*.bak" -delete
-	@-find $(REPODIR)/ -name "*.log" -delete
-	@-find $(REPODIR)/ -name "*.xml" -delete
-	@-find $(REPODIR)/ -name "*.html" -delete
-	@-find $(REPODIR)/ -name "python-coverage-html" -type d | xargs rm -fr
-	@-find $(REPODIR)/ -name "c-coverage-html" -type d | xargs rm -fr
-	@-find $(REPODIR)//build/ -name "*.json" -delete
-	@-find $(REPODIR)//build/ -name "*.log" -delete
-
 build:
 	@echo "Executing build-wrapper..."
-	@bash $(UTIL)/repo/deps.sh build-wrapper
+	@bash $(REPODIR)//deps.sh build-wrapper
 	@bash $(REPODIR)//build.sh
 
 #!!Prerequisite order is strict!!
 sonar:build test coverage
 	@echo "Executing sonar-scanner..."
-	@bash $(UTIL)/repo/deps.sh sonar-scanner
+	@bash $(REPODIR)//deps.sh sonar-scanner
 	@bash $(REPODIR)//sonar.sh $(OPT)
 
 sonar_install:
 	@echo "Installing sonar binaries..."
-	@bash $(UTIL)/repo/deps.sh unzip
-	@bash $(REPODIR)//install.sh
 
 #####################################################################
 #WEB TOOLS
@@ -138,7 +158,7 @@ killhtml:
 
 html:killhtml
 	@echo "Launching http server..."
-	@nohup $(HTTPCMD) > $(UTIL)/repo/http.log &
+	@nohup $(HTTPCMD) > $(REPODIR)//http.log &
 	@sleep 1
 	@echo "See http://localhost:9000"
 
@@ -148,7 +168,7 @@ killjupyter:
 
 jupyter:killjupyter
 	@echo "Launching Jupyter..."
-	@nohup $(JUPYCMD) > $(UTIL)/repo/jupyter.log &
+	@nohup $(JUPYCMD) > $(REPODIR)//jupyter.log &
 	@sleep 1
 	@make listjupyter
 
