@@ -7,12 +7,11 @@ SOURCES="tests/"
 #Compilation 
 BUILD="make all"
 
-#Pthon and nosetests binaries
-PYTHON=python3
-NOSETESTS=nosetests3
-
 #Small http server
 HTTPSERVER=http.server
+
+#Location of sonar cli binaries
+SONARBIN=https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
 
 ###############################################################
 #Modify only if you are not working in Linux
@@ -23,18 +22,8 @@ SONARSCANNER=${HOME}/src/sonar-scanner/bin/sonar-scanner
 BUILDWRAPPER=${HOME}/src/build-wrapper/build-wrapper-linux-x86-64
 
 ###############################################################
-#Modify only if you are very familiar with github
-###############################################################
-#Original repo
-GITREPO=seap-udea/RepoTemplate
-GITMETH=https://github.com;GITCHAR=/
-#If you have your public key in github use 
-#GITMETH=git@github.com-<user>;GITCHAR=:
-
-###############################################################
 #Don't modify if you don't know what you're doing
 ###############################################################
 #Directories
 STOREDIR=.store
-UTIL=util
 

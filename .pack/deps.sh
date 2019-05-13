@@ -1,6 +1,13 @@
 #!/bin/bash
-. .reporc
-repodir=$UTIL/repo
+. .pack/packrc
+if [ -e $REPODIR/reporc ];then . $REPODIR/reporc;fi
+
+packfile=$1;shift
+if [ ! -e $packfile ];
+then
+    echo "Packfile $packfile does not recognized."
+    exit 1
+fi
 
 qsel=0
 if [ "x$1" != "x" ]
@@ -11,7 +18,7 @@ fi
 
 IFS=$'\n'
 recom=""
-for deps in $(cat $repodir/deps.conf |grep -v "#")
+for deps in $(cat $packfile |grep -v "#")
 do
     package=$(echo $deps |awk -F":" '{print $1}')
     cmd=$(echo $deps |awk -F":" '{print $2}')

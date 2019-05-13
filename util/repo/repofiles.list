@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 util/sonar/build/.gitignore
 util/sonar/docs/sonarcloud.md
 util/sonar/docs/troubleshooting.md
@@ -21,11 +22,28 @@ util/repo/docs/developer.md
 util/repo/update.sh
 util/repo/check.sh
 util/repo/repo.sh
-util/repo/files.sh
-util/repo/deps.conf
-util/repo/getbranch.sh
-util/repo/repo.in
-util/repo/repo.hpp
-util/repo/deps.sh
+=======
+util/repo/build/.gitignore
+util/repo/build.sh
+util/repo/c-coverage.sh
+util/repo/create_repo.sh
+util/repo/deps_repo.conf
+util/repo/docs/compilation.txt
+util/repo/docs/sonarcloud.md
+util/repo/docs/troubleshooting_repo.md
+util/repo/docs/troubleshooting_sonar.md
 util/repo/files.list
-.reporc
+>>>>>>> reorg
+util/repo/files.sh
+util/repo/getbranch.sh
+util/repo/install_sonar.sh
+util/repo/meta/.gitignore
+util/repo/python-coverage.sh
+util/repo/repo.hpp
+util/repo/repo.in
+util/repo/repofiles.list
+util/repo/reporc
+util/repo/sonar.in
+util/repo/sonar.sh
+util/repo/sonarc
+util/repo/update.sh

@@ -1,14 +1,15 @@
 #!/bin/bash
-. .reporc
+. .pack/packrc
+. $REPODIR/reporc
 
-repodir=$UTIL/repo
+
 branch=$(cat .branch)
 if [ "x$branch" = "x" ];then
     echo "You must choose which branch to update in .branch"
     exit 1
 fi
 
-rawuri=https://raw.githubusercontent.com/$GITREPO/$branch/
+rawuri=https://raw.githubusercontent.com/seap-udea/RepoTemplate/$branch/
 
 qsel=0
 if [ "x$1" != "x" ]
@@ -17,7 +18,7 @@ then
     array=("$@")
 fi
 
-for file in $(cat $repodir/repofiles.list |grep -v "#")
+for file in $(cat $REPODIR/repofiles.list |grep -v "#")
 do
     if [ $qsel -gt 0 ]
     then

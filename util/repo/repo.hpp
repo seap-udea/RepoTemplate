@@ -1,1 +1,1 @@
-constexpr char METADIR[]="util/sonar/meta/";
+constexpr char METADIR[]="util/repo/meta/";

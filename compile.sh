@@ -1,3 +1,4 @@
 #!/bin/bash
+. .pack/packrc
+
 make Program.out
-TYPE=TESTING make tests/test_Module.tout

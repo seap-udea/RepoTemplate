@@ -1,0 +1,11 @@
+#Pthon binaries
+PYTHON=python3
+NOSETESTS=nosetests3
+
+#Directories
+REPODIR=util/repo
+STOREDIR=.store
+
+#Log files
+LOGFILE=.pack/log
+

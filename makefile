@@ -1,24 +1,15 @@
 #####################################################################
 #VARIABLES
 #####################################################################
-include .reporc
-CPP=g++
-BASE_CFLAGS=-I. -std=c++11
-BASE_LFLAGS=-lm 
+PACKDIR=.pack/
+include $(PACKDIR)/packrc
 
-#Flags for testing
-ifeq ($(TYPE),TESTING)
-	CXXFLAGS=$(BASE_CFLAGS) --coverage -fprofile-arcs -g -O0
-	LXXFLAGS=$(BASE_LFLAGS) -lcppunit --coverage -fprofile-arcs
-	OUT=tout
-else
-	CXXFLAGS=$(BASE_CFLAGS) -O4
-	LXXFLAGS=$(BASE_LFLAGS)
-	OUT=out
-endif
+CPP=g++
+CXXFLAGS=-I. -std=c++11
+LXXFLAGS=-lm 
 
 #####################################################################
-#COMMON RULES
+#COMPILATION RULES
 #####################################################################
 all:
 	bash compile.sh
@@ -26,24 +17,20 @@ all:
 #=========================
 #C and C++ compilation
 #=========================
-%.$(OUT):%.o 
+%.out:%.o 
 	$(CPP) $^ $(LXXFLAGS) -o $@
 
-%.o:%.c 
+%.o:%.cpp 
 	$(CPP) -c $(CXXFLAGS) $^ -o $@
 
-clean:cleancrap cleanrepo cleansonar cleanout
-
-%.$(OUT)_run:
-	@make $(@:_run=)
-	@./$(@:_run=)
-
 #####################################################################
-#TESTING
+#BASIC RULES
 #####################################################################
-test:
-	bash test_c.sh
-	bash test_python.sh
+deps:
+	@echo "Checking dependencies..."
+	@bash $(PACKDIR)/deps.sh $(PACKDIR)/deps_pack.conf 
+
+clean:cleancrap cleanout cleanrepo
 
 #=========================
 #Clean
@@ -71,20 +58,19 @@ cleanout:
 	@-find . -name "*.pyc" -delete
 	@-find . -name '__pycache__' -type d | xargs rm -fr
 
+pack:
+	@echo "Packing data..."
+	@bash $(PACKDIR)/pack.sh
+
+unpack:
+	@echo "Unpacking data..."
+	@bash $(PACKDIR)/pack.sh unpack
+
 #####################################################################
 #EXTERNAL RULES
 #####################################################################
 #=========================
 #Repo Rules
 #=========================
-include $(UTIL)/repo/repo.in
+include util/repo/repo.in
 
-#=========================
-#Sonar Rules
-#=========================
-include $(UTIL)/sonar/sonar.in
-
-#####################################################################
-#INSTALL
-#####################################################################
-install:sonar_install repo_install

@@ -1,4 +1,4 @@
 #!/bin/bash
-. .reporc
+. .pack/packrc
 
 $PYTHON program.py

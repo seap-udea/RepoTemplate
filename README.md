@@ -1,7 +1,7 @@
 # RepoTemplate
 > Template files for a (i)Python, C and C++ repositories integrated with SonarQube
 
-For those who program oftenly in `C`, `C++` and `Python`, it is common that when creating a new project, many files from other projects and repositories must be copied in a new repositorie.  Makefiles, installation scripts, sample test code, etc are normally the same for a new repo. 
+For those who program oftenly in `C`, `C++` and `Python`, it is common that when creating a new project, many files from other projects and repositories must be copied in the new one.  Makefiles, installation scripts, sample test code, etc. are normally repeated in the new repo, or they are useful as templates for new files. 
 
 **RepoTemplate** offers in a single *package* the basic functionality of a basic repository (project) including:
 
@@ -23,9 +23,9 @@ To use **RepoTemplate** you will need (*non-functional* requisites):
 
 Make sure that you have configured (installed) your GitHub credentials and have configured your account to make some git (see [appendixes](#gitconfig))
 
-> **NOTE**: Hereafter we will assume that your GitHUb account name is **`iHacker`**.
+If you have any problem preparing or configuring the repo see the [Repository troubleshooting](util/repo/docs/troubleshooting_sonar.md) or the [Sonar troubleshooting](util/repo/docs/troubleshooting_repo.md).
 
-If you have any problem preparing or configuring the repo see the [Repository troubleshooting](util/repo/docs/troubleshooting.md) or the [Sonar troubleshooting](util/sonar/docs/troubleshooting.md).
+> **NOTE**: Hereafter we will assume that your GitHUb account name is **`iHacker`**.
 
 <a name="starting"></a>
 ## Getting started
@@ -51,6 +51,10 @@ Creating a new repository from **RepoTemplate**, is very easy:
 
 	You need to be sure that `NewRepo` does not exist in the `iHacker` GitHub account.
 
+4. Verify that you have installed all dependencies:
+	
+		make deps
+
 4. Test your repo:
 	
 		make
@@ -68,23 +72,22 @@ Before using the repository, however, you need to personalize it.
 
 In order to use some of the best functionalities of **RepoTemplate**, it is needed to execute some additional commands.  
 
-1. Edit `.reporc` and choose, among other options, the version of `python` and `nosetests` you want to use. 
+1. Edit `.pack/packrc` and choose, among other options, the version of `python` and `nosetests` you want to use. 
 
-		#Directories
-		STOREDIR=.store
-		UTIL=util
-		#Sonar binary directories
-		SONARSCANNER=${HOME}/src/sonar-scanner/bin/sonar-scanner
-		BUILDWRAPPER=${HOME}/src/build-wrapper/build-wrapper-linux-x86-64
-		#Pthon
+		#Pthon binaries
 		PYTHON=python3
 		NOSETESTS=nosetests3
+		#Directories
+		REPODIR=util/repo
+		STOREDIR=.store
+		#Log files
+		LOGFILE=.pack/log
 
 	> **NOTE**: It is important to notice that configuration files may change 	significantly, therefore this is an example.
 
 2. Install dependencies.
 
-		make deps
+		make deps_repo
 
 	This is a typical output of this command:
 	
@@ -114,16 +117,15 @@ In order to use some of the best functionalities of **RepoTemplate**, it is need
 		Checking for cppunit:done.
 		All done.
 
-	> **About sonar binaries**: Sonar require two set of binaries: 	build-wrapper and sonar-scanner (for detailed explanations of this files see 	[Sonar Functionality](util/sonar/docs/sonarcloud.md)).  Although they 	should be normally downloaded fron SonarQube website, for the sake of 	simplicity, we provide along this package a script for getting and placing 	it in the right place: `make sonarinstall`.
+	> **About sonar binaries**: Sonar require two set of binaries: 	build-wrapper and sonar-scanner (for detailed explanations of this files see 	[Sonar Functionality](util/repo/docs/sonarcloud.md)).  Although they 	should be normally downloaded fron SonarQube website, for the sake of 	simplicity, we provide along this package a script for getting and placing 	it in the right place: `make sonarinstall`.
 
-3. Create new project in [Sonarcloud.io](http://sonarcloud.io) and get the `Project Key`, `Organization Key` and `token` (for detailed instructions see [Sonar Cloud configuration](util/sonar/docs/sonarcloud.md))
+3. Create new project in [Sonarcloud.io](http://sonarcloud.io) and get the `Project Key`, `Organization Key` and `token` (for detailed instructions see [Sonar Cloud configuration](util/repo/docs/sonarcloud.md))
 
-4. Edit `.sonarc` using the 
+4. Edit `util/repo/sonarc` using the 
 
 		sonar.projectKey=iHacker_NewRepo
 		sonar.organization=iHacker-github
 		sonar.login=2084a54ce06b4d193900141cf67a163681f746d1
-
 
 	> **NOTE**: It is important to notice that configuration files may change 	significantly, therefore this is an example.
 

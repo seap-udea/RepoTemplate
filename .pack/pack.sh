@@ -1,5 +1,5 @@
 #!/bin/bash
-. .reporc
+. .pack/packrc
 basedir=$(pwd)
 
 pack=$1
