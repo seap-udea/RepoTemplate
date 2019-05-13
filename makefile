@@ -2,6 +2,8 @@
 #VARIABLES
 #####################################################################
 PACKDIR=.pack/
+include $(PACKDIR)/packrc
+
 CPP=g++
 CXXFLAGS=-I. -std=c++11
 LXXFLAGS=-lm 

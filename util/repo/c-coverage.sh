@@ -1,15 +1,15 @@
 echo "Running tests and coverage analysis..."
-. .reporc
-repodir=$UTIL/repo
+. .pack/packrc
+. $REPODIR/reporc
 
 #Check if coverage files have been generated
 if [ "x$(find . -name '*.gcno')" = "x" ];then make test;fi
 
 #Output in xml
-gcovr -r . -x > $repodir/meta/c-coverage.xml
+gcovr -r . -x > $REPODIR/meta/c-coverage.xml
 
 #Output in html
-htmldir=$repodir/meta/c-coverage-html
+htmldir=$REPODIR/meta/c-coverage-html
 if [ ! -d $htmldir ];then mkdir -p $htmldir;fi
 gcovr -r . --html --html-details -o $htmldir/coverage.html
 

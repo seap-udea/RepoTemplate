@@ -52,21 +52,6 @@ LTXXFLAGS=$(LXXFLAGS) -lcppunit --coverage -fprofile-arcs
 %.to:%.cpp
 	$(CPP) -c $(CTXXFLAGS) $^ -o $@
 
-#####################################################################
-#COVERAGE
-#####################################################################
-test:
-	bash test.sh
-
-coverage:
-	@echo "Executing coverage..."
-	@bash $(REPODIR)/deps.sh coverage
-	@bash $(REPODIR)/c-coverage.sh
-	@bash $(REPODIR)/python-coverage.sh
-
-#####################################################################
-#REPO RULES
-#####################################################################
 cleanrepo:
 	@echo "Cleaning repo files..."
 	@-find . -name ".coverage" -delete
@@ -82,17 +67,8 @@ cleanrepo:
 	@-find $(REPODIR)/build/ -name "*.json" -delete
 	@-find $(REPODIR)/build/ -name "*.log" -delete
 
-files:clean
-	@echo "Generating list of files..."
-	@bash $(REPODIR)/files.sh 
-
-updatefiles:
-	@echo "Getting list of files..."
-	@curl -s -o $(REPODIR)/repofiles.list https:/raw.githubusercontent.com/$(GITREPO)/$(BRANCH)/$(REPODIR)/repofiles.list
-
-update:updatefiles
-	@echo "Updating files $(UPDATEFILES)..."
-	@bash $(REPODIR)/update.sh $(UPDATEFILES)
+test:
+	bash test.sh
 
 #####################################################################
 #SONAR RULES
@@ -105,52 +81,35 @@ sonar_install:
 
 build:
 	@echo "Executing build-wrapper..."
-	@bash $(REPODIR)/deps.sh build-wrapper
+	@bash $(PACKDIR)/deps.sh $(REPODIR)/deps_repo.conf build-wrapper
 	@bash $(REPODIR)/build.sh
+
+coverage:
+	@echo "Executing coverage..."
+	@bash $(PACKDIR)/deps.sh $(REPODIR)/deps_repo.conf coverage
+	@bash $(REPODIR)/c-coverage.sh
+	@bash $(REPODIR)/python-coverage.sh
 
 #!!Prerequisite order is strict!!
 sonar:build test coverage
 	@echo "Executing sonar-scanner..."
-	@bash $(REPODIR)/deps.sh sonar-scanner
+	@bash $(PACKDIR)/deps.sh $(REPODIR)/deps_repo.conf sonar-scanner
 	@bash $(REPODIR)/sonar.sh $(OPT)
 
 #####################################################################
-#WEB TOOLS
+#FILES
 #####################################################################
-HTTPCMD=$(PYTHON) -m $(HTTPSERVER) 9000
-JUPYCMD=jupyter-notebook --no-browser --port=8888
+files:clean
+	@echo "Generating list of files..."
+	@bash $(REPODIR)/files.sh 
 
-PID=$(shell ps -eaf |grep '$(HTTPCMD)' |grep -v grep |cut -f 2 -d' ')
-JPID=$(shell ps -eaf |grep '$(JUPYCMD)' |grep -v grep |cut -f 2 -d' ')
+updatefiles:
+	@echo "Getting list of files..."
+	@curl -s -o $(REPODIR)/repofiles.list https:/raw.githubusercontent.com/$(GITREPO)/$(BRANCH)/$(REPODIR)/repofiles.list
 
-showhtml:
-	@echo "Web processes:"
-	@echo "Simple http server:"
-	@-ps -eaf |grep '$(HTTPCMD)' |grep -v grep
-	@echo "To kill it: make killhtml"
-	@echo "Jupyter server:"
-	@-jupyter notebook list
-	@echo "To kill it: make killjupyter"
-
-killhtml:
-	@echo "Killing html process..."
-	@kill -9 $(PID)
-
-html:killhtml
-	@echo "Launching http server..."
-	@nohup $(HTTPCMD) > $(REPODIR)/http.log &
-	@sleep 1
-	@echo "See http:/localhost:9000"
-
-killjupyter:
-	@echo "Killing jupyter instances..."
-	@kill -9 $(JPID)
-
-jupyter:killjupyter
-	@echo "Launching Jupyter..."
-	@nohup $(JUPYCMD) > $(REPODIR)/jupyter.log &
-	@sleep 1
-	@make listjupyter
+update:updatefiles
+	@echo "Updating files $(UPDATEFILES)..."
+	@bash $(REPODIR)/update.sh $(UPDATEFILES)
 
 #####################################################################
 #ONLY FOR REPO TEMPLATE DEVELOPER
@@ -166,6 +125,58 @@ pushreporc:
 	@-make commit
 	@-git update-index --assume-unchanged $(REPODIR)/reporc
 
+HTTPCMD=$(PYTHON) -m $(HTTPSERVER) 9000
+JUPYCMD=jupyter-notebook --no-browser --port=8888
+
+PID=$(shell ps -eaf |grep '$(HTTPCMD)' |grep -v grep |cut -f 2 -d' ')
+JPID=$(shell ps -eaf |grep '$(JUPYCMD)' |grep -v grep |cut -f 2 -d' ')
+
+ifeq ($(PID),)
+	KILLHTML=":"
+else
+	KILLHTML=kill -9 $(PID)
+endif
+
+ifeq ($(JPID),)
+	KILLJUPY=":"
+else
+	KILLJUPY=kill -9 $(JPID)
+endif
+
+showhtml:
+	@echo "Web processes:"
+	@echo "Simple http server:"
+	@-ps -eaf |grep '$(HTTPCMD)' |grep -v grep
+	@echo "To kill it: make killhtml"
+	@echo "Jupyter server:"
+	@-jupyter notebook list
+	@echo "To kill it: make killjupyter"
+
+killhtml:
+	@echo "Killing html process..."
+	@echo "	Command: $(KILLHTML)"
+	@$(KILLHTML)
+
+html:killhtml
+	@echo "Launching http server..."
+	@nohup $(HTTPCMD) > $(UTIL)/repo/http.log &
+	@sleep 1
+	@echo "See http://localhost:9000"
+
+killjupyter:
+	@echo "Killing jupyter instances..."
+	@echo "	Command: $(KILLJUPY)"
+	@$(KILLJUPY)
+
+jupyter:killjupyter
+	@echo "Launching Jupyter..."
+	@nohup $(JUPYCMD) > $(UTIL)/repo/jupyter.log &
+	@sleep 1
+	@make showhtml
+
+killall:killjupyter killhtml
+
 edit:files
 	@emacs -nw $(shell cat $(REPODIR)/files.list)
+
 

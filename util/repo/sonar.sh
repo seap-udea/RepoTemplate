@@ -1,20 +1,16 @@
 echo "Running sonar scanner..."
-. .reporc
-sonardir=$UTIL/sonar
-repodir=$UTIL/repo
+. .pack/packrc
+. $REPODIR/reporc
 
 $SONARSCANNER \
  $@ \
  -Dsonar.sources=.\
- -Dsonar.exclusions=$repodir/**,$sonardir/**,util/**\
+ -Dsonar.exclusions=$REPODIR/**,$REPODIR/**,util/**\
  -Dsonar.host.url=https://sonarcloud.io\
- -Dsonar.python.coverage.reportPaths=$repodir/meta/python-coverage.xml\
+ -Dsonar.python.coverage.reportPaths=$REPODIR/meta/python-coverage.xml\
  -Dsonar.cfamily.gcov.reportsPath=./\
  -Dsonar.sourceEncodings=UTF-8\
- -Dsonar.cfamily.build-wrapper-output=$sonardir/build\
- -Dproject.settings=.sonarc\
- |tee $sonardir/sonar.log
+ -Dsonar.cfamily.build-wrapper-output=$REPODIR/build\
+ -Dproject.settings=$REPODIR/sonarc\
+ |tee $REPODIR/sonar.log
 
-# Deprecated (unit testing is 
-# -Dsonar.python.xunit.reportPath=$sonardir/meta/nosetests.xml\
-# -Dsonar.cfamily.cppunit.reportsPath=$sonardir/meta/\
