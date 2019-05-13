@@ -1,6 +1,6 @@
 #Pthon binaries. In Linux is preferrable python3, nosetests3
-PYTHON=python
-NOSETESTS=nosetests
+PYTHON=python3
+NOSETESTS=nosetests3
 
 #Directories
 REPODIR=util/repo
