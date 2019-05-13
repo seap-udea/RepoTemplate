@@ -16,6 +16,7 @@ if [ $pack = "pack" ];then
 	dname=$(dirname $file)
 	uname=$(echo $dname |sed -e s/\\//_/)
 	sdir="$STOREDIR/$uname--$fname"
+	echo $sdir
 	mkdir -p "$sdir"
 	cd $sdir
 	split -b 2000k $basedir/$file $fname-
