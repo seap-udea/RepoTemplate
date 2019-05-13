@@ -1,6 +1,9 @@
 #!/bin/bash
 . .reporc
 
+#Compile
+TYPE=TESTING make tests/test_Module.tout
+
 #Run module testing
 TYPE=TESTING make tests/test_Module.tout_run
 

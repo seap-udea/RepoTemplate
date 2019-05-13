@@ -34,7 +34,7 @@ repo_install:unpack
 #####################################################################
 #COVERAGE
 #####################################################################
-coverage:test
+coverage:
 	@echo "Executing coverage..."
 	@bash $(UTIL)/repo/deps.sh coverage
 	@bash $(UTIL)/repo/c-coverage.sh
@@ -81,6 +81,38 @@ updatefiles:
 update:updatefiles
 	@echo "Updating files $(UPDATEFILES)..."
 	@bash $(REPODIR)/update.sh $(UPDATEFILES)
+
+#####################################################################
+#SONAR RULES
+#####################################################################
+cleansonar:
+	@echo "Cleaning sonar files..."
+	@-find . -name ".coverage" -delete
+	@-find . -name ".scannerwork" -type d | xargs rm -fr
+	@-find $(REPODIR)/ -name "*.bak" -delete
+	@-find $(REPODIR)/ -name "*.log" -delete
+	@-find $(REPODIR)/ -name "*.xml" -delete
+	@-find $(REPODIR)/ -name "*.html" -delete
+	@-find $(REPODIR)/ -name "python-coverage-html" -type d | xargs rm -fr
+	@-find $(REPODIR)/ -name "c-coverage-html" -type d | xargs rm -fr
+	@-find $(REPODIR)//build/ -name "*.json" -delete
+	@-find $(REPODIR)//build/ -name "*.log" -delete
+
+build:
+	@echo "Executing build-wrapper..."
+	@bash $(UTIL)/repo/deps.sh build-wrapper
+	@bash $(REPODIR)//build.sh
+
+#!!Prerequisite order is strict!!
+sonar:build test coverage
+	@echo "Executing sonar-scanner..."
+	@bash $(UTIL)/repo/deps.sh sonar-scanner
+	@bash $(REPODIR)//sonar.sh $(OPT)
+
+sonar_install:
+	@echo "Installing sonar binaries..."
+	@bash $(UTIL)/repo/deps.sh unzip
+	@bash $(REPODIR)//install.sh
 
 #####################################################################
 #WEB TOOLS
