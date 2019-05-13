@@ -1,7 +1,7 @@
 #!/bin/bash
-. .reporc
+. .pack/packrc
+. $REPODIR/reporc
 
-repodir=$UTIL/repo
 branch=$(cat .branch)
 if [ "x$branch" = "x" ];then
     echo "You must choose which branch to update in .branch"
@@ -17,7 +17,7 @@ then
     array=("$@")
 fi
 
-for file in $(cat $repodir/repofiles.list |grep -v "#")
+for file in $(cat $REPODIR/repofiles.list |grep -v "#")
 do
     if [ $qsel -gt 0 ]
     then
