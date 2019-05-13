@@ -12,7 +12,7 @@ echo "Removing all git information..."
 mv .git .git.bak
 
 echo "Creating GitHub repository $USER/$REPO (if this is not the right user ctrl+c and run: USER=<user> make repo)"
-curl -o /dev/null -s -u "$USER" https://api.github.com/user/repos -d "{\"name\":\"$REPO\"}"
+curl -o /dev/null -s -u "$USER" https://api.github.com/user/repos -d "{\"name\":\"$reponame\"}"
 
 echo "Initializing repo..."
 git init
