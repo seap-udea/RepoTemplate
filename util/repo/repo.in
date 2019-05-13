@@ -110,7 +110,7 @@ files:clean
 
 updatefiles:
 	@echo "Getting list of files..."
-	@curl -s -o $(REPODIR)/repofiles.list https:/raw.githubusercontent.com/$(GITREPO)/$(SRCBRANCH)/$(REPODIR)/repofiles.list
+	@curl -s -o $(REPODIR)/repofiles.list https:/raw.githubusercontent.com/seap-udea/RepoTemplate/$(SRCBRANCH)/$(REPODIR)/repofiles.list
 
 update:updatefiles
 	@echo "Updating files $(UPDATEFILES)..."

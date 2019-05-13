@@ -8,7 +8,7 @@ if [ "x$branch" = "x" ];then
     exit 1
 fi
 
-rawuri=https://raw.githubusercontent.com/$GITREPO/$branch/
+rawuri=https://raw.githubusercontent.com/seap-udea/RepoTemplate/$branch/
 
 qsel=0
 if [ "x$1" != "x" ]
