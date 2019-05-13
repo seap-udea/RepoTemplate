@@ -114,17 +114,6 @@ update:updatefiles
 #####################################################################
 #ONLY FOR REPO TEMPLATE DEVELOPER
 #####################################################################
-pullall:
-	@echo "Pulling new files..."
-	@-git reset --hard HEAD
-	@-git pull --all
-
-pushreporc:
-	@echo "Updating reporc..."
-	@-git update-index --no-assume-unchanged $(REPODIR)/reporc
-	@-make commit
-	@-git update-index --assume-unchanged $(REPODIR)/reporc
-
 HTTPCMD=$(PYTHON) -m $(HTTPSERVER) 9000
 JUPYCMD=jupyter-notebook --no-browser --port=8888
 
@@ -179,4 +168,20 @@ killall:killjupyter killhtml
 edit:files
 	@emacs -nw $(shell cat $(REPODIR)/files.list)
 
+pullall:
+	@echo "Pulling new files..."
+	@-git reset --hard HEAD
+	@-git pull --all
+
+pushreporc:
+	@echo "Updating reporc..."
+	@-git update-index --no-assume-unchanged $(REPODIR)/reporc
+	@-make commit
+	@-git update-index --assume-unchanged $(REPODIR)/reporc
+
+pushsonarc:
+	@echo "Updating reporc..."
+	@-git update-index --no-assume-unchanged $(REPODIR)/reporc
+	@-make commit
+	@-git update-index --assume-unchanged $(REPODIR)/reporc
 

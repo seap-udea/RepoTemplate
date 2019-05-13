@@ -27,5 +27,6 @@ echo "#Automatically generate by make repo:" >> $repodir/reporc
 echo "REPO=$REPO" >> $repodir/reporc
 echo "USER=$USER" >> $repodir/reporc
 git update-index --assume-unchanged $(REPODIR)/reporc
+git update-index --assume-unchanged $(REPODIR)/sonarc
 
 echo "Next: run 'make deps'"
