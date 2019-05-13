@@ -2,6 +2,7 @@
 . .pack/packrc
 . $REPODIR/reporc
 
+
 branch=$(cat .branch)
 if [ "x$branch" = "x" ];then
     echo "You must choose which branch to update in .branch"
