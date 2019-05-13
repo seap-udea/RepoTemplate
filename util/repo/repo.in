@@ -16,31 +16,31 @@ deps:
 	@echo "Checking for dependencies..."
 	@bash $(REPODIR)/deps.sh
 
+repo_install:
+	@echo "Installing repo..."
+	@npack
+	@bash $(REPODIR)/deps.sh unzip
+	@bash $(REPODIR)/install.sh
+
 #####################################################################
 #GIT RULES
 #####################################################################
-commit:
-	@echo "Commiting..."
-	@-git commit -am "Commit"
-	@-git push origin $(BRANCH)
+branch:
+	@echo "We are in branch '$(BRANCH)'"
 
 status:
 	@echo "Git Status..."
 	@-git status
 
+commit:
+	@echo "Commiting..."
+	@-git commit -am "Commit"
+	@-git push origin $(BRANCH)
+
 pull:
 	@echo "Pulling new files..."
 	@-git reset --hard HEAD
 	@-git pull origin $(BRANCH)
-
-branch:
-	@echo "We are in branch '$(BRANCH)'"
-
-repo_install:
-	@echo "Installing repo..."
-	@npack
-	@bash $(REPODIR)//deps.sh unzip
-	@bash $(REPODIR)//install.sh
 
 #####################################################################
 #TEST COMPILATION RULES
