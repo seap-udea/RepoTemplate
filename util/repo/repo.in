@@ -14,7 +14,7 @@ repo:
 
 deps_repo:
 	@echo "Checking for dependencies..."
-	@bash $(PACKDIR)/deps.sh $(REPODIR)/deps_repo.conf
+	@bash $(PACKDIR)/deps.sh $(REPODIR)/deps_repo_${SYSTEM}.conf
 
 #####################################################################
 #GIT RULES
@@ -76,24 +76,24 @@ test:
 sonar_install:
 	@echo "Installing repo..."
 	@make unpack
-	@bash $(PACKDIR)/deps.sh $(REPODIR)/deps_repo.conf unzip
+	@bash $(PACKDIR)/deps.sh $(REPODIR)/deps_repo_${SYSTEM}.conf unzip
 	@bash $(REPODIR)/install_sonar.sh 
 
 build:
 	@echo "Executing build-wrapper..."
-	@bash $(PACKDIR)/deps.sh $(REPODIR)/deps_repo.conf build-wrapper
+	@bash $(PACKDIR)/deps.sh $(REPODIR)/deps_repo_${SYSTEM}.conf build-wrapper
 	@bash $(REPODIR)/build.sh
 
 coverage:
 	@echo "Executing coverage..."
-	@bash $(PACKDIR)/deps.sh $(REPODIR)/deps_repo.conf coverage
+	@bash $(PACKDIR)/deps.sh $(REPODIR)/deps_repo_${SYSTEM}.conf coverage
 	@bash $(REPODIR)/c-coverage.sh
 	@bash $(REPODIR)/python-coverage.sh
 
 #!!Prerequisite order is strict!!
 sonar:build test coverage
 	@echo "Executing sonar-scanner..."
-	@bash $(PACKDIR)/deps.sh $(REPODIR)/deps_repo.conf sonar-scanner
+	@bash $(PACKDIR)/deps.sh $(REPODIR)/deps_repo_${SYSTEM}.conf sonar-scanner
 	@bash $(REPODIR)/sonar.sh $(OPT)
 
 #####################################################################
