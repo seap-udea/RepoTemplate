@@ -26,7 +26,7 @@ then
     echo "Build-wrapper is already installed."
 else
     #Download sonar-scanner
-    if [ ! -f $sonardir/tools/build-wrapper.zip ]
+    if [ ! -f $REPODIR/build/build-wrapper.zip ]
     then
 	make unpack
     else
@@ -34,7 +34,7 @@ else
     fi
     mkdir -p $HOME/src/
     echo "Unzipping build-wrapper binaries"
-    unzip -q -d $HOME/src/ $sonardir/tools/build-wrapper.zip
+    unzip -q -d $HOME/src/ $REPODIR/build/build-wrapper.zip
     mv $HOME/src/build-wrapper-* $HOME/src/build-wrapper/
 fi
 

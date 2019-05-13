@@ -12,15 +12,9 @@ repo:
 	@echo "Creating a new repo..."	
 	@bash $(REPODIR)/create_repo.sh USER=$(USER)
 
-deps:
+deps_repo:
 	@echo "Checking for dependencies..."
-	@bash $(REPODIR)/deps.sh
-
-repo_install:
-	@echo "Installing repo..."
-	@npack
-	@bash $(REPODIR)/deps.sh unzip
-	@bash $(REPODIR)/install.sh
+	@bash $(PACKDIR)/deps.sh $(REPODIR)/deps_repo.conf
 
 #####################################################################
 #GIT RULES
@@ -48,7 +42,7 @@ pull:
 CTXXFLAGS=$(CXXFLAGS) --coverage -fprofile-arcs -g -O0
 LTXXFLAGS=$(LXXFLAGS) -lcppunit --coverage -fprofile-arcs
 
-%.$(OUT)_run:
+%.tout_run:
 	@make $(@:_run=)
 	@./$(@:_run=)
 
@@ -61,15 +55,14 @@ LTXXFLAGS=$(LXXFLAGS) -lcppunit --coverage -fprofile-arcs
 #####################################################################
 #COVERAGE
 #####################################################################
+test:
+	bash test.sh
+
 coverage:
 	@echo "Executing coverage..."
-	@bash $(REPODIR)//deps.sh coverage
-	@bash $(REPODIR)//c-coverage.sh
-	@bash $(REPODIR)//python-coverage.sh
-
-test:
-	bash test_c.sh
-	bash test_python.sh
+	@bash $(REPODIR)/deps.sh coverage
+	@bash $(REPODIR)/c-coverage.sh
+	@bash $(REPODIR)/python-coverage.sh
 
 #####################################################################
 #REPO RULES
@@ -86,8 +79,8 @@ cleanrepo:
 	@-find $(REPODIR)/ -name "*.html" -delete
 	@-find $(REPODIR)/ -name "python-coverage-html" -type d | xargs rm -fr
 	@-find $(REPODIR)/ -name "c-coverage-html" -type d | xargs rm -fr
-	@-find $(REPODIR)//build/ -name "*.json" -delete
-	@-find $(REPODIR)//build/ -name "*.log" -delete
+	@-find $(REPODIR)/build/ -name "*.json" -delete
+	@-find $(REPODIR)/build/ -name "*.log" -delete
 
 files:clean
 	@echo "Generating list of files..."
@@ -95,7 +88,7 @@ files:clean
 
 updatefiles:
 	@echo "Getting list of files..."
-	@curl -s -o $(REPODIR)/repofiles.list https://raw.githubusercontent.com/$(GITREPO)/$(BRANCH)/$(REPODIR)/repofiles.list
+	@curl -s -o $(REPODIR)/repofiles.list https:/raw.githubusercontent.com/$(GITREPO)/$(BRANCH)/$(REPODIR)/repofiles.list
 
 update:updatefiles
 	@echo "Updating files $(UPDATEFILES)..."
@@ -104,19 +97,22 @@ update:updatefiles
 #####################################################################
 #SONAR RULES
 #####################################################################
+sonar_install:
+	@echo "Installing repo..."
+	@make unpack
+	@bash $(PACKDIR)/deps.sh $(REPODIR)/deps_repo.conf unzip
+	@bash $(REPODIR)/install_sonar.sh 
+
 build:
 	@echo "Executing build-wrapper..."
-	@bash $(REPODIR)//deps.sh build-wrapper
-	@bash $(REPODIR)//build.sh
+	@bash $(REPODIR)/deps.sh build-wrapper
+	@bash $(REPODIR)/build.sh
 
 #!!Prerequisite order is strict!!
 sonar:build test coverage
 	@echo "Executing sonar-scanner..."
-	@bash $(REPODIR)//deps.sh sonar-scanner
-	@bash $(REPODIR)//sonar.sh $(OPT)
-
-sonar_install:
-	@echo "Installing sonar binaries..."
+	@bash $(REPODIR)/deps.sh sonar-scanner
+	@bash $(REPODIR)/sonar.sh $(OPT)
 
 #####################################################################
 #WEB TOOLS
@@ -142,9 +138,9 @@ killhtml:
 
 html:killhtml
 	@echo "Launching http server..."
-	@nohup $(HTTPCMD) > $(REPODIR)//http.log &
+	@nohup $(HTTPCMD) > $(REPODIR)/http.log &
 	@sleep 1
-	@echo "See http://localhost:9000"
+	@echo "See http:/localhost:9000"
 
 killjupyter:
 	@echo "Killing jupyter instances..."
@@ -152,7 +148,7 @@ killjupyter:
 
 jupyter:killjupyter
 	@echo "Launching Jupyter..."
-	@nohup $(JUPYCMD) > $(REPODIR)//jupyter.log &
+	@nohup $(JUPYCMD) > $(REPODIR)/jupyter.log &
 	@sleep 1
 	@make listjupyter
 

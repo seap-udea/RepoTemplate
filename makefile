@@ -1,18 +1,16 @@
 #####################################################################
 #VARIABLES
 #####################################################################
-PACKDIR=.pack
+PACKDIR=.pack/
 CPP=g++
 CXXFLAGS=-I. -std=c++11
 LXXFLAGS=-lm 
 
 #####################################################################
-#COMMON RULES
+#COMPILATION RULES
 #####################################################################
 all:
 	bash compile.sh
-
-clean:cleancrap cleanout cleanrepo
 
 #=========================
 #C and C++ compilation
@@ -22,6 +20,15 @@ clean:cleancrap cleanout cleanrepo
 
 %.o:%.cpp 
 	$(CPP) -c $(CXXFLAGS) $^ -o $@
+
+#####################################################################
+#BASIC RULES
+#####################################################################
+deps:
+	@echo "Checking dependencies..."
+	@bash $(PACKDIR)/deps.sh $(PACKDIR)/deps_pack.conf 
+
+clean:cleancrap cleanout cleanrepo
 
 #=========================
 #Clean
