@@ -16,12 +16,6 @@ build:
 	@bash $(UTIL)/repo/deps.sh build-wrapper
 	@bash $(UTIL)/sonar/build.sh
 
-coverage:test
-	@echo "Executing coverage..."
-	@bash $(UTIL)/repo/deps.sh coverage
-	@bash $(UTIL)/sonar/c-coverage.sh
-	@bash $(UTIL)/sonar/python-coverage.sh
-
 #!!Prerequisite order is strict!!
 sonar:build test coverage
 	@echo "Executing sonar-scanner..."

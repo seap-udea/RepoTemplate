@@ -32,6 +32,15 @@ pullall:
 repo_install:unpack
 
 #####################################################################
+#COVERAGE
+#####################################################################
+coverage:test
+	@echo "Executing coverage..."
+	@bash $(UTIL)/repo/deps.sh coverage
+	@bash $(UTIL)/repo/c-coverage.sh
+	@bash $(UTIL)/repo/python-coverage.sh
+
+#####################################################################
 #REPO RULES
 #####################################################################
 cleanrepo:

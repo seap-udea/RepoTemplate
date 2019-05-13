@@ -1,14 +1,14 @@
 echo "Running tests and coverage analysis..."
 . .reporc
-sonardir=$UTIL/sonar
+repodir=$UTIL/repo
 rm -rf .coverage &> /dev/null
 
 #Options: https://nose.readthedocs.io/en/latest/man.html
 $NOSETESTS \
 --with-coverage \
 --cover-package=./ \
---cover-xml --cover-xml-file=$sonardir/meta/python-coverage.xml \
---with-xunit --xunit-file=$sonardir/meta/python-tests.xml \
---cover-html --cover-html-dir=$sonardir/meta/python-coverage-html \
+--cover-xml --cover-xml-file=$repodir/meta/python-coverage.xml \
+--with-xunit --xunit-file=$repodir/meta/python-tests.xml \
+--cover-html --cover-html-dir=$repodir/meta/python-coverage-html \
 
-sed -i.bak 's/filename="/filename=".\//g' $sonardir/meta/python-coverage.xml
+sed -i.bak 's/filename="/filename=".\//g' $repodir/meta/python-coverage.xml

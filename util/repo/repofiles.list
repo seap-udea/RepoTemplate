@@ -10,7 +10,6 @@ util/sonar/tools/build-wrapper.zip
 util/sonar/build.sh
 util/sonar/sonar.sh
 util/sonar/install.sh
-util/sonar/meta/.gitignore
 util/repo/repofiles.list
 util/repo/pack.sh
 util/repo/docs/troubleshooting.md
@@ -26,5 +25,11 @@ util/repo/getbranch.sh
 util/repo/repo.in
 util/repo/repo.hpp
 util/repo/deps.sh
+util/repo/meta/c-coverage-html/coverage.html
+util/repo/meta/c-coverage-html/coverage.Module.cpp.html
+util/repo/meta/c-coverage-html/coverage.Program.cpp.html
+util/repo/meta/c-coverage-html/coverage.tests_test_Module.cpp.html
+util/repo/meta/.gitignore
+util/repo/meta/c-coverage.xml
 util/repo/files.list
 .reporc
