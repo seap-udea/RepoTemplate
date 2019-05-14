@@ -24,6 +24,7 @@ do
     then 
 	echo "Skipping $file"
     fi
+
     if [ $qsel -gt 0 ]
     then
 	if [[ " ${array[@]} " =~ " ${file} " ]];then
@@ -33,6 +34,9 @@ do
 	fi
     fi
     echo -n "Downloading $file: "
-    curl -s -o $file $rawuri/$file
+    fname=/tmp/$(basename $file)
+    curl -s -o $fname $rawuri/$file
+    diff $fname $file
+    exit 0
     echo "done."
 done
