@@ -20,7 +20,10 @@ fi
 
 for file in $(cat $REPODIR/repofiles.list |grep -v "#")
 do
-    if [ $file = "$REPODIR/reporc" -o $file = "$REPODIR/sonarc" -o $file = ".pack/packrc" ];then continue;fi
+    if [ $file = "$REPODIR/reporc" -o $file = "$REPODIR/sonarc" -o $file = ".pack/packrc" ]
+    then 
+	echo "Skipping $file"
+    fi
     if [ $qsel -gt 0 ]
     then
 	if [[ " ${array[@]} " =~ " ${file} " ]];then
