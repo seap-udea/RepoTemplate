@@ -36,7 +36,20 @@ do
     echo -n "Downloading $file: "
     fname=/tmp/$(basename $file)
     curl -s -o $fname $rawuri/$file
-    diff $fname $file
-    exit 0
+    if [ ! -e $file ];then
+	echo -n "Local file does not exist, retrieving. "
+	cp -rf $fname $file
+    elif [ "x$(diff -q -w $fname $file)" != "x" ];then 
+	echo -n "local file is different. are you sure?(y/n)[y]:"
+	read ans
+	if [ "x$ans" = "x" -o "$ans" = "y" ];then 
+	    echo -n "retrieving. "
+	    cp -rf $fname $file
+	else
+	    echo -n "skipping. "
+	fi
+    else
+	echo -n "local file is the same, skipping. "
+    fi
     echo "done."
 done
